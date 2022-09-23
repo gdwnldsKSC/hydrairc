@@ -26,3 +26,5 @@ HydraIRC/Plugins/WinAMP/Release/*
 # Ignore release build artifacts and object files
 HydraIRC/Release/*
 HydraIRC/libs/HydraIRCPlugin/release/*
+Distribution/Release/HydraIRC_Log.txt
+Distribution/Release/Profile_Default.xml
