@@ -1,7 +1,10 @@
 #pragma once
 
 template <bool t_bVertical = true>
-class CHydraSplitterWindowT : public CSplitterWindowImpl<CHydraSplitterWindowT<t_bVertical>, t_bVertical>
+
+//The following code is from dxzl's VS2015 port. Fixes a breaking change from WTL 8.0/8.1 to upgrade to WTL 9.0
+class CHydraSplitterWindowT : public CSplitterWindowT<t_bVertical>
+
 {
 public:
 	DECLARE_WND_CLASS_EX(_T("WTL_HydraSplitterWindow"), CS_DBLCLKS, COLOR_WINDOW)

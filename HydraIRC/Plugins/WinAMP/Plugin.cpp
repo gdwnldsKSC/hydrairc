@@ -529,28 +529,6 @@ void CPlugin::OnActivate( void )
     sys_Printf(BIC_ERROR,"%s: Failed to get imagelist!\n",Plugin.m_Name);
   */
 
-#ifdef HYDRAIRC_0.3.163
-/*
-  In HydraIRC <= 0.3.163 HydraIRC_GetToolbar returned the HWND of the toolbar itself
-  but attachking a ReBar and Using GetBandInfo no-longer worked (probably due to WTL 8 changes)
-  so in 0.3.164 it has been changed to returning the actual child window the holds the buttons.
-*/
-  g_hToolBarWnd = HydraIRC_GetToolbar();
-  if (!g_hToolBarWnd) {
-    sys_Printf(BIC_ERROR,"%s: Failed to get toolbar window!\n",Plugin.m_Name);
-    return;
-  }
-  
-  g_Rebar.Attach(g_hToolBarWnd);
-
-	//REBARBANDINFO rbbi = { sizeof(REBARBANDINFO), RBBIM_CHILD | RBBIM_CHILDSIZE | RBBIM_IDEALSIZE | RBBIM_STYLE };
-  REBARBANDINFO rbbi = { sizeof(REBARBANDINFO), RBBIM_CHILD };
-  if (g_Rebar.GetBandInfo(1,&rbbi) == 0) {
-    sys_Printf(BIC_ERROR,"%s: Failed to get toolbar band info!\n",Plugin.m_Name);
-    return;
-  }
-  g_Toolbar.Attach(rbbi.hwndChild);
-#else
   HWND toolbarChild = HydraIRC_GetToolbar();
   if (!toolbarChild) {
     sys_Printf(BIC_ERROR,"%s: Failed to get toolbar band info!\n",Plugin.m_Name);
@@ -558,7 +536,6 @@ void CPlugin::OnActivate( void )
   }
 
   g_Toolbar.Attach(toolbarChild);
-#endif
 
   //g_ToolbarBitmap.LoadBitmap(IDB_TOOLBAR);
 
