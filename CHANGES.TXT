@@ -15,6 +15,10 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
   
+25/September/2022 - AM (0.3.168) - Experimental
+  * Updated instructions to indicate building with WTL 8.1 instead of older WTL 8.0
+  * Successfully building with WTL 8.1
+  
 23/September/2022 - AM (0.3.167) - Experimental
   gdwnldsKSC
   * Updated DEVELOPER.TXT with instructonis for building under Visual Studio 2008
