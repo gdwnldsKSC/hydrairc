@@ -44,19 +44,19 @@ your own.
 
 VISUAL STUDIO 2008 NOTES: 
 
-Visual Studio 2008 and forward NO LONGER REQUIRE #define vsnprintf _vsnprintf. You must comment this out of libxml2's win32config.h for the included (2.4.24 - upgrade notes to 2.5.1 listed below) version listed below for the build to succeed. 
+Visual Studio 2008 and forward NO LONGER REQUIRE #define vsnprintf _vsnprintf. You must comment this out of libxml2's win32config.h for the included (2.4.24 - upgrade notes to 2.5.6 listed below) version listed below for the build to succeed. 
 
 The ATL Server package has become almost impossible to find as a regular download, but it can now be obtained at https://github.com/gabegundy/atlserver
 
 You will need this in addition to the below mentioned WTL 9.0 files (Add them to your global includes for ease of use) in order to compile on VS 2008 or newer. Add the WTL 9.0 and ATL Server include directories to global include paths. 
 
-With the above #define removal and using the 2.5.1 version of libxml2 Hydra builds cleanly on VS 2008 Professional with only warnings about deprecated/unsafe APIs in LibXML2 (which should be resolved by updating to a newer version, which is a work in progress). All other parts of the system build cleanly without warnings - except one.
+With the above #define removal and using the 2.5.6 version of libxml2 Hydra builds cleanly on VS 2008 Professional with only warnings about deprecated/unsafe APIs in LibXML2 (which should be resolved by updating to a newer version, which is a work in progress). All other parts of the system build cleanly without warnings - except one.
 
 -----------------------------------
 
-LIBXML BUILD NOTES (Upgrade libxml to 2.5.1): A Custom VCProj file was included in the distro folder in the original hydraIRC bundle of libxml - the one included in the updated repository is straight from the libxml project.
+LIBXML BUILD NOTES (Upgrade libxml to 2.5.6): A Custom VCProj file was included in the distro folder in the original hydraIRC bundle of libxml - the one included in the updated repository is straight from the libxml project.
 
-You need to take the now included .vcproj in the distribution folder and place it into \HydraIRC\libs\libxml2\win32\dsp after extracting the contents of the libxml2-LIBXML_2_5_1 folder inside libxml2-LIBXML_2_5_1.zip to \HydraIRC\libs\libxml2\
+You need to take the now included .vcproj in the distribution folder and place it into \HydraIRC\libs\libxml2\win32\dsp after extracting the contents of the libxml2-LIBXML_2_5_6 folder inside libxml2-LIBXML_2_5_6.zip to \HydraIRC\libs\libxml2\
 
 Afterwards, we need to generate xmlversion.h for compilation to succeed and correct version numbers to be built into the application. Open a command prompt and navigate to \HydraIRC\libs\libxml2\win32 and execute:
 
@@ -64,7 +64,7 @@ cscript configure.js iconv:no
 
 Above notied modificaton of commenting out #define vsnprintf _vsnprintf is still required for VS2008+.
 
-libXML2 2.5.1 will now build successfuly, and the entire HydraIRC project will now build and run. 
+libXML2 2.5.6 will now build successfuly, and the entire HydraIRC project will now build and run. 
 
 Orignial HydraIRC-libxml2-20021126.zip is kept for reference in distribution folder, but should not be needed anymore.
 
