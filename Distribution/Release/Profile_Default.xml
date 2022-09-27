@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
-<HydraIRCProfile name="Default">
-  <identities/>
+<HydraIRCProfile name="Default" hydraircversion="v0.3.169">
+  <identities>
+    <identity name="Hunterkll" id="1" realname="Hunterkll" username="Hunterkll" identdos="UNIX" identdusername="Hunterkll">
+      <nick name="Hunterkll"/>
+      <nick name="Yugi"/>
+      <nick name="Seto_Kaiba"/>
+    </identity>
+  </identities>
   <buddygroups>
     <group name="Special People" id="100" network="10362">
       <buddy name="Hydra"/>
