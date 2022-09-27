@@ -45,36 +45,39 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
   // resolve the address! :)
 
   struct hostent *hp;
-  hp = gethostbyname(pDNSRI->m_fqdn);
+  // Allocate full size of HP to prevent access violations and other nastyness
+  hp = (struct hostent *)calloc(1,sizeof(struct hostent));
 
-// DEBUG: IPV6 PREPARATION: 
-// PREPARING TO CHANGE IP RESOLUTION TO GETADDRINFO FROM GETHOSTBYNAME
-  sys_Printf(BIC_INFO, "GetAddrInfo Test code following");
   struct addrinfo hints, *res;
-  struct in_addr addr;
-  int err;
-  char address[46];
-  DWORD size = 46;
-  LPSOCKADDR sockaddr_ip;
-
+  // Init hints with zeros before usage
   memset(&hints, 0, sizeof(hints));
+  // vector that will contain all returned resolution addresses
+  std::vector<in_addr*> in_addrs;
+  // simple error handling for getaddrinfo
+  int err = 0;
+ 
   hints.ai_socktype = SOCK_STREAM;
-  hints.ai_family = AF_UNSPEC;
+  hints.ai_flags = AI_CANONNAME;
+  // Change to AF_UNSPEC to perform dual stack lookups with IPv6 preferred, AF_INET for IPv4 only
+  hints.ai_family = AF_INET;
 
   if ((err = getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res)) != 0) {
 	  sys_Printf(BIC_INFO, "error %d\n", err);
   }
+ 
+  // prepare to build hostent struct from getaddrinfo data - take first address and put it into in_addrs
+  // using vector we can potentially rotate addresses in a future release from a single DNS resolution
+  for(addrinfo *p_addr = res; p_addr != NULL; p_addr = p_addr->ai_next) {
+      in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p_addr->ai_addr)->sin_addr);
+  }
+  in_addrs.push_back(NULL);
 
-  addr.S_un = ((struct sockaddr_in *)(res->ai_addr))->sin_addr.S_un;
-
-// InetPton is supported on Vista and later only so use WSAAddressToString
-
-  sockaddr_ip = (LPSOCKADDR) res->ai_addr;
-
-  WSAAddressToString(sockaddr_ip, (DWORD) res->ai_addrlen, NULL, address, &size);
-
-  sys_Printf(BIC_INFO, "ip address : %s\n", address);
-
+  // Here we take the output of getaddrinfo and convert it to a hostent for existing code compatibility
+  hp->h_name = res->ai_canonname;
+  hp->h_aliases = NULL;
+  hp->h_addrtype = AF_INET;
+  hp->h_length = sizeof(in_addr);
+  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
 
   // Signal the calling window
   if (hp != NULL)
