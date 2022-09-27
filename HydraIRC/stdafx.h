@@ -3,27 +3,17 @@
   HydraIRC
   Copyright (C) 2002-2006 Dominic Clifton aka Hydra
 
-  HydraIRC limited-use source license
-
-  1) You can:
-  1.1) Use the source to create improvements and bug-fixes to send to the
-       author to be incorporated in the main program.
-  1.2) Use it for review/educational purposes.
-
-  2) You can NOT:
-  2.1) Use the source to create derivative works. (That is, you can't release
-       your own version of HydraIRC with your changes in it)
-  2.2) Compile your own version and sell it.
-  2.3) Distribute unmodified, modified source or compiled versions of HydraIRC
-       without first obtaining permission from the author. (I want one place
-       for people to come to get HydraIRC from)
-  2.4) Use any of the code or other part of HydraIRC in anything other than 
-       HydraIRC.
-       
-  3) All code submitted to the project:
-  3.1) Must not be covered by any license that conflicts with this license 
-       (e.g. GPL code)
-  3.2) Will become the property of the author.
+  This program is free software: you can redistribute it and/or modify  
+  it under the terms of the GNU General Public License as published by  
+  the Free Software Foundation, version 3.
+ 
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+  General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License 
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -32,10 +22,6 @@
 //      are changed infrequently
 //
 
-//#define NOT_READ_THE_LICENSE
-#ifdef NOT_READ_THE_LICENSE
-#error ** You must read LICENSE.TXT **
-#endif
 
 //////////////////////////////////////////////////////////////////////////
 //
@@ -107,6 +93,9 @@ extern CAppModule _Module;
 
 // atl should be downloaded and install from here http://www.codeplex.com/AtlServer/
 #include <atlrx.h>  // RegExps
+
+// Staging support for IPv6
+#include <ws2tcpip.h>
 
 /////////////////////////////////////////////////////////////////////////
 //

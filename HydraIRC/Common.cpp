@@ -42,7 +42,7 @@ CChildCommon *FindChildWindow(HWND hWnd);
 void IRCCommon::ProcessOutputBuffer( void )
 {
 #ifdef VERBOSE_DEBUG
-  sys_printf(BIC_FUNCTION,"IRCCommon::ProcessOutputBuffer()\n");
+  sys_Printf(BIC_FUNCTION,"IRCCommon::ProcessOutputBuffer()\n");
 #endif
   // process the buffer if we have text in it
   // but keep the buffer for later if the window's not open yet.
@@ -142,7 +142,7 @@ void IRCCommon::ProcessOutputBuffer( void )
     }
   }
 #ifdef VERBOSE_DEBUG
-  sys_printf(BIC_FUNCTION,"Exiting IRCCommon::ProcessOutputBuffer()\n");
+  sys_Printf(BIC_FUNCTION,"Exiting IRCCommon::ProcessOutputBuffer()\n");
 #endif
 }
 
