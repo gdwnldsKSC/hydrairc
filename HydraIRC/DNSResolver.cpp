@@ -24,6 +24,7 @@
 #include "StdAfx.h"
 #include "HydraIRC.h"
 
+
 CDNSResolver::CDNSResolver(void)
 {
   m_Thread1.Start(this, THID_DNSRESOLVER);
@@ -48,6 +49,31 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 
 // DEBUG: IPV6 PREPARATION: 
 // PREPARING TO CHANGE IP RESOLUTION TO GETADDRINFO FROM GETHOSTBYNAME
+  sys_Printf(BIC_INFO, "GetAddrInfo Test code following");
+  struct addrinfo hints, *res;
+  struct in_addr addr;
+  int err;
+  char address[46];
+  DWORD size = 46;
+  LPSOCKADDR sockaddr_ip;
+
+  memset(&hints, 0, sizeof(hints));
+  hints.ai_socktype = SOCK_STREAM;
+  hints.ai_family = AF_UNSPEC;
+
+  if ((err = getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res)) != 0) {
+	  sys_Printf(BIC_INFO, "error %d\n", err);
+  }
+
+  addr.S_un = ((struct sockaddr_in *)(res->ai_addr))->sin_addr.S_un;
+
+// InetPton is supported on Vista and later only so use WSAAddressToString
+
+  sockaddr_ip = (LPSOCKADDR) res->ai_addr;
+
+  WSAAddressToString(sockaddr_ip, (DWORD) res->ai_addrlen, NULL, address, &size);
+
+  sys_Printf(BIC_INFO, "ip address : %s\n", address);
 
 
   // Signal the calling window
