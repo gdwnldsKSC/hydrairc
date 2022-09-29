@@ -148,7 +148,7 @@
 				Name="VCCLCompilerTool"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="..\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL;LIBXML_EXPR_ENABLED"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -214,6 +214,10 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
+			<File
+				RelativePath="..\buf.c"
+				>
+			</File>
 			<File
 				RelativePath="..\c14n.c"
 				>
