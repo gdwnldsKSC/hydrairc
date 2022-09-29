@@ -100,7 +100,7 @@ int Socket::Connect( char *Host, unsigned short Port) // TODO: add "events" para
 		in_addrs.push_back(NULL);
 
 		m_hp->h_name = res->ai_canonname;
-		m_hp->h_aliases = NULL;/serve
+		m_hp->h_aliases = NULL;
 		m_hp->h_addrtype = AF_INET;
 		m_hp->h_length = sizeof(in_addr);
 		m_hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
