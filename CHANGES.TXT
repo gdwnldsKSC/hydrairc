@@ -15,13 +15,19 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
   
+29/September/2022 - AM (0.3.170) - Expermiental
+  gdwnldsKSC
+  * LibXML 2.9.14 update
+  
 26/September/2022 - AM (0.3.169) - Expermiental
+  gdwnldsKSC
   * Updated LibXML from 2.5.1 to 2.6.32. Changes to libXML required addition of ws2_32.lib to linker parameters. 
   * Removed upgrade cruft (Inherited project properties for preprocessor directives, etc) From VCProj files, now fully VS 2008 native.
   * Changed DNS Resolver to use GetAddrInfo instead of gethostbyname to allow for future flexibility and IPv6 support
     Current implementation takes results of getaddrinfo and converts it to the existing hostent struct type expected by other code
   
 25/September/2022 - AM (0.3.168) - Experimental
+  gdwnldsKSC
   * Updated instructions to indicate building with WTL 9.0 instead of older WTL 8.0
   * Successfully building with WTL 9.0 - this gains us supported VS2008-VS2013 compatibility with WTL.
   * Remove legacy HydraIRC 0.3.163 #ifdef code from WinAmp plugin to clean up compiler warnings
