@@ -2668,7 +2668,7 @@ LRESULT CChildFrame::OnProcessQueue(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam,
 void CChildFrame::ProcessBuffer( void )
 {
 #ifdef VERBOSE_DEBUG
-  sys_printf(BIC_FUNCTION,"CChildFrame::ProcessBuffer()\n");
+  sys_Printf(BIC_FUNCTION,"CChildFrame::ProcessBuffer()\n");
 #endif
   switch (m_WindowType)
   {
@@ -2684,7 +2684,7 @@ void CChildFrame::ProcessBuffer( void )
       break;
   }
 #ifdef VERBOSE_DEBUG
-  sys_printf(BIC_FUNCTION,"Exiting CChildFrame::ProcessBuffer()\n");
+  sys_Printf(BIC_FUNCTION,"Exiting CChildFrame::ProcessBuffer()\n");
 #endif
 }
 
