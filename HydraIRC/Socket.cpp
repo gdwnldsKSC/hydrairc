@@ -79,7 +79,32 @@ int Socket::Connect( char *Host, unsigned short Port) // TODO: add "events" para
 	m_sin.sin_addr.s_addr = inet_addr(Host);
 	if (m_sin.sin_addr.s_addr == INADDR_NONE)
 	{
-		m_hp = gethostbyname(Host);
+		// new method, IPv6 friendly
+		m_hp = (struct hostent *)calloc(1,sizeof(struct hostent));
+		struct addrinfo hints, *res;
+	    memset(&hints, 0, sizeof(hints));
+	    std::vector<in_addr*> in_addrs;
+	    int err = 0;
+
+	    hints.ai_socktype = SOCK_STREAM;
+	    hints.ai_flags = AI_CANONNAME;
+	    hints.ai_family = AF_INET; // change to AF_UNSPEC for dual stack resolution preferring IPv6, AF_INET6 for IPv6 only
+
+	    if ((err = getaddrinfo(Host, NULL, &hints, &res)) != 0) {
+			sys_Printf(BIC_INFO, "error %d\n", err);
+		}
+
+		for (addrinfo *p_addr = res; p_addr != NULL; p_addr = p_addr->ai_next) {
+			in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p_addr->ai_addr)->sin_addr);
+		}
+		in_addrs.push_back(NULL);
+
+		m_hp->h_name = res->ai_canonname;
+		m_hp->h_aliases = NULL;/serve
+		m_hp->h_addrtype = AF_INET;
+		m_hp->h_length = sizeof(in_addr);
+		m_hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
+
 		if (m_hp == NULL)
     {
       return SOCK_ERR_RESOLVE;
