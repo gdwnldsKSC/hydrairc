@@ -26,11 +26,8 @@ char *osversion()
          return _strdup(buf);
    }
 
-   switch (osvi.dwPlatformId)
+   if (osvi.dwPlatformId == 2)
    {
-      // Test for the Windows NT product family.
-      case VER_PLATFORM_WIN32_NT:
-
          // Test for the specific product family.
 		 if ( osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0)
 		 {
@@ -159,37 +156,6 @@ char *osversion()
                osvi.szCSDVersion,
                osvi.dwBuildNumber & 0xFFFF);
          }
-
-
-         break;
-
-      // Test for the Windows 95 product family.
-      case VER_PLATFORM_WIN32_WINDOWS:
-
-         if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 0)
-         {
-             sprintf (buf+strlen(buf), "Microsoft Windows 95 ");
-             if ( osvi.szCSDVersion[1] == 'C' || osvi.szCSDVersion[1] == 'B' )
-                sprintf (buf+strlen(buf), "OSR2 " );
-         } 
-
-         if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
-         {
-             sprintf (buf+strlen(buf), "Microsoft Windows 98 ");
-             if ( osvi.szCSDVersion[1] == 'A' )
-                sprintf (buf+strlen(buf), "SE " );
-         } 
-
-         if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 90)
-         {
-             sprintf (buf+strlen(buf), "Microsoft Windows Millennium Edition");
-         } 
-         break;
-
-      case VER_PLATFORM_WIN32s:
-
-         sprintf (buf+strlen(buf), "Microsoft Win32s");
-         break;
    }
    return _strdup(buf);
 }
