@@ -52,9 +52,6 @@ char *osversion()
          if ( osvi.dwMajorVersion <= 4 )
             sprintf (buf+strlen(buf), "Microsoft Windows NT ");
 
- #define PRODUCT_ENTERPRISE                          0x00000004
-
-
          // Test for specific product on Windows NT 4.0 SP6 and later.
          if( bOsVersionInfoEx )
          {
