@@ -18,6 +18,8 @@ Key:
 29/September/2022 - AM (0.3.170) - Expermiental
   gdwnldsKSC
   * LibXML 2.9.14 update
+  * Added manifest fragment for compilation which generates compiler warnings with earlier versions of mt.exe but allows
+    accurate version reporting post-build 9200 for Windows versions.
   
 26/September/2022 - AM (0.3.169) - Expermiental
   gdwnldsKSC

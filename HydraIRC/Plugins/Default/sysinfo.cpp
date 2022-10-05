@@ -32,6 +32,14 @@ char *osversion()
       case VER_PLATFORM_WIN32_NT:
 
          // Test for the specific product family.
+		 if ( osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0)
+		 {
+			if(osvi.dwBuildNumber > 22000)
+				sprintf (buf+strlen(buf), "Microsoft Windows 11, ");
+			else
+				sprintf (buf+strlen(buf), "Microsoft Windows 10, ");
+		 }
+
          if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
             sprintf (buf+strlen(buf), "Microsoft Windows Server 2003 family, ");
 
@@ -44,6 +52,9 @@ char *osversion()
          if ( osvi.dwMajorVersion <= 4 )
             sprintf (buf+strlen(buf), "Microsoft Windows NT ");
 
+ #define PRODUCT_ENTERPRISE                          0x00000004
+
+
          // Test for specific product on Windows NT 4.0 SP6 and later.
          if( bOsVersionInfoEx )
          {
@@ -54,8 +65,8 @@ char *osversion()
                   sprintf (buf+strlen(buf), "Workstation 4.0 " );
                else if( osvi.wSuiteMask & VER_SUITE_PERSONAL )
                   sprintf (buf+strlen(buf), "Home Edition " );
-               else
-                  sprintf (buf+strlen(buf), "Professional " );
+			   else
+                  sprintf (buf+strlen(buf), "Undetermined (Possibly Pro or Enterprise) " );
             }
             
             // Test for the server type.
