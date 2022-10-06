@@ -24,9 +24,15 @@ HydraIRC/Plugins/Alias/Release/*
 HydraIRC/Plugins/Default/Release/*
 HydraIRC/Plugins/Uptime/Release/*
 HydraIRC/Plugins/WinAMP/Release/*
+HydraIRC/Plugins/Alias/x64/Release/*
+HydraIRC/Plugins/Default/x64/Release/*
+HydraIRC/Plugins/Uptime/x64/Release/*
+HydraIRC/Plugins/WinAMP/x64/Release/*
 # Ignore release build artifacts and object files
 HydraIRC/Release/*
+HydraIRC/x64/Release/*
 HydraIRC/libs/HydraIRCPlugin/release/*
+HydraIRC/libs/HydraIRCPlugin/x64/release/*
 Distribution/Release/HydraIRC_Log.txt
 Distribution/Debug Files/Release/*
 Distribution/Debug Files/Debug/*
