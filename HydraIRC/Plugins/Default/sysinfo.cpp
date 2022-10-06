@@ -127,35 +127,8 @@ char *osversion()
             printf( "%d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion );
          }
 
-      // Display service pack (if any) and build number.
-
-         if( osvi.dwMajorVersion == 4 && 
-             lstrcmpi( osvi.szCSDVersion, "Service Pack 6" ) == 0 )
-         {
-            HKEY hKey;
-            LONG lRet;
-
-            // Test for SP6 versus SP6a.
-            lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
-               "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009",
-               0, KEY_QUERY_VALUE, &hKey );
-            if( lRet == ERROR_SUCCESS )
-               sprintf (buf+strlen(buf), "Service Pack 6a (Build %d)", osvi.dwBuildNumber & 0xFFFF );         
-            else // Windows NT 4.0 prior to SP6a
-            {
-               sprintf (buf+strlen(buf), "%s (Build %d)",
-                  osvi.szCSDVersion,
-                  osvi.dwBuildNumber & 0xFFFF);
-            }
-
-            RegCloseKey( hKey );
-         }
-         else // Windows NT 3.51 and earlier or Windows 2000 and later
-         {
-            sprintf (buf+strlen(buf), "%s (Build %d)",
-               osvi.szCSDVersion,
-               osvi.dwBuildNumber & 0xFFFF);
-         }
+         // Display service pack (if any) and build number.
+         sprintf (buf+strlen(buf), "%s (Build %d)", osvi.szCSDVersion, osvi.dwBuildNumber & 0xFFFF);
    }
    return _strdup(buf);
 }
