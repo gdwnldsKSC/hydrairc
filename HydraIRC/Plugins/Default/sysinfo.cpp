@@ -164,6 +164,6 @@ char *meminfo()
   MEMORYSTATUSEX memstatus;
   memstatus.dwLength = sizeof(memstatus);
   GlobalMemoryStatusEx(&memstatus);
-  sprintf(buf, "Memory: %d/%d MB", (memstatus.ullTotalPhys - memstatus.ullAvailPhys)/(1024*1024), memstatus.ullTotalPhys/(1024*1024));
+  sprintf(buf, "Memory: %llu/%llu MB", memstatus.ullAvailPhys/(1024*1024), memstatus.ullTotalPhys/(1024*1024));
   return _strdup(buf);
 }
