@@ -33,7 +33,7 @@ Compiling
 
 Make sure you have a copy of the git repository, as well as the following files:
 
-libxml2-LIBXML2.6.32.zip
+libxml2-2.9.14.zip
 WTL 9.0 - https://sourceforge.net/projects/wtl/files/WTL%209.0/WTL%209.0.4140%20Final/
 ATL Server includes/package - https://github.com/gabegundy/atlserver
 
