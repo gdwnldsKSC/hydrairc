@@ -18,6 +18,7 @@ Key:
 18/October/2022 - AM (0.3.171) - Experimental
   gdwnldsKSC
   * LibXML updated to current upstream master as of this date.
+  * 64-bit build now works, opens, and connect to IRC but many window elements are broken. 
   
 6/October/2022 - AM (0.3.170) - Expermiental
   gdwnldsKSC

@@ -2019,7 +2019,7 @@ static void sendCmdLine(HWND hOther, LPTSTR lpstrCmdLine)
 }
 
 BOOL CALLBACK searchOtherInstance(HWND hWnd, LPARAM lParam) {
-	DWORD result;
+	DWORD_PTR result;
 	LRESULT ok = ::SendMessageTimeout(hWnd, WMU_WHERE_ARE_YOU, 0, 0,
 		SMTO_BLOCK | SMTO_ABORTIFHUNG, 5000, &result);
 	if(ok == 0)
