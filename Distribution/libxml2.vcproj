@@ -178,7 +178,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/MACHINE:I386"
+				AdditionalOptions="/MACHINE:X64"
 				AdditionalDependencies="wsock32.lib odbc32.lib odbccp32.lib ws2_32.lib"
 				OutputFile=".\libxml2/libxml2.dll"
 				LinkIncremental="2"
@@ -368,7 +368,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/MACHINE:I386"
+				AdditionalOptions="/MACHINE:X64"
 				AdditionalDependencies="wsock32.lib odbc32.lib odbccp32.lib ws2_32.lib"
 				OutputFile=".\libxml2/libxml2.dll"
 				LinkIncremental="1"
@@ -378,7 +378,7 @@
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				ImportLibrary=".\libxml2/libxml2.lib"
-				TargetMachine="17"
+				TargetMachine="0"
 			/>
 			<Tool
 				Name="VCALinkTool"
