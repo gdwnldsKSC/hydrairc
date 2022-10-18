@@ -14,12 +14,20 @@ Key:
   . personal note
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
+
+18/October/2022 - AM (0.3.171) - Experimental
+  gdwnldsKSC
+  * LibXML updated to current upstream master as of this date.
   
-29/September/2022 - AM (0.3.170) - Expermiental
+6/October/2022 - AM (0.3.170) - Expermiental
   gdwnldsKSC
   * LibXML 2.9.14 update
   * Added manifest fragment for compilation which generates compiler warnings with earlier versions of mt.exe but allows
     accurate version reporting post-build 9200 for Windows versions.
+  * Updated Sysinfo (in default plugin) code to accurately report Windows 10 or 11, as well as accurately report RAM
+    information. This Change unfortunately requires usage of a Windows XP/2003 or higher only API, so combined with
+    the DNS resolver changes, Windows 2000 potential buildablity is completely broken. On the bright side, Hydra sysinfo can
+    now properly display memory information on systems with more than 4GB memory, such as one with 392GB!
   
 26/September/2022 - AM (0.3.169) - Expermiental
   gdwnldsKSC

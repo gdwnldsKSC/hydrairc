@@ -33,7 +33,7 @@ Compiling
 
 Make sure you have a copy of the git repository, as well as the following files:
 
-libxml2-2.9.14.zip
+libxml2-master.zip
 WTL 9.0 - https://sourceforge.net/projects/wtl/files/WTL%209.0/WTL%209.0.4140%20Final/
 ATL Server includes/package - https://github.com/gabegundy/atlserver
 
@@ -51,15 +51,15 @@ You will need this in addition to the below mentioned WTL 9.0 files (Add them to
 
 -----------------------------------
 
-LIBXML BUILD NOTES (Upgrade libxml to 2.9.14): A Custom VCProj file was included in the distro folder in the original hydraIRC bundle of libxml - the one included in the updated repository is straight from the libxml project.
+LIBXML BUILD NOTES (Upgrade libxml to current 18 Oct 2022 master): A Custom VCProj file was included in the distro folder in the original hydraIRC bundle of libxml - the one included in the updated repository is straight from the libxml project.
 
 You need to take the now included .vcproj in the distribution folder and place it into \HydraIRC\libs\libxml2\win32\ after extracting the contents of the libxml2-2.9.14 folder inside libxml2-2.9.14.zip to \HydraIRC\libs\libxml2\
 
 Afterwards, we need to generate xmlversion.h for compilation to succeed and correct version numbers to be built into the application. Open a command prompt and navigate to \HydraIRC\libs\libxml2\win32 and execute:
 
-cscript configure.js iconv:no
+cscript configure.js iconv:no xptr_locs:y
 
-libXML2 2.9.14 will now build successfuly, and the entire HydraIRC project will now build and run. 
+libXML2 will now build successfuly, and the entire HydraIRC project will now build and run. 
 
 Orignial HydraIRC-libxml2-20021126.zip is kept for reference in distribution folder, but should not be needed anymore. If you use this version instead, you will have to edit win32config.h and comment out the vsnprintf #define line near the bottom of the file.
 

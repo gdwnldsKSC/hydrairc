@@ -14,6 +14,10 @@ Key:
   . personal note
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
+
+18/October/2022 - AM (0.3.171) - Experimental
+  gdwnldsKSC
+  * LibXML updated to current upstream master as of this date.
   
 6/October/2022 - AM (0.3.170) - Expermiental
   gdwnldsKSC
