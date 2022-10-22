@@ -1047,3 +1047,5 @@ BOOL Clipboard_Copy(int format, char *data, int datalength);
 char *GetIPv4AddressString(DWORD Address);
 LRESULT OnEnLink(int idCtrl, LPNMHDR pnmh, BOOL& bHandled);
 char *ReplaceInvalidFilenameCharacters(char *FileName,char Replace);
+int inet_pton(int af, const char *src, void *dst);
+const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);

@@ -63,7 +63,7 @@
 #define NTDDI_VERSION	NTDDI_WINXP
 #define _WIN32_WINNT	_WIN32_WINNT_WINXP
 // Updating to latest version of Rich Edit control included in windows
-// as standard for additional unicdoe & language support. Req XP SP1 and up
+// as standard for additional unicode & language support. Req XP SP1 and up
 // allows usage of latest richedit control - for example, on W11 it loads
 // version 8.5, whereas on XP SP1 it loads 4.1.
 #define _RICHEDIT_VER	0x0500
