@@ -19,7 +19,9 @@ Key:
   gdwnldsKSC
   * LibXML updated to current upstream master as of this date.
   * 64-bit build now works, opens, and connect to IRC but many window elements are broken. 
-  
+  * Using Windows SDK 6.0 now, tidied up some definitions and set to use OS provided updated 
+    RichEdit component - Requires a minimum of Windows XP SP1 now.
+    
 6/October/2022 - AM (0.3.170) - Expermiental
   gdwnldsKSC
   * LibXML 2.9.14 update
