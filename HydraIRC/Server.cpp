@@ -607,7 +607,6 @@ void IRCServer::ActualConnect( DWORD Address )
   m_Variables[VID_ALL] = UseEmptyString(VarStr);
   OutputFormatter(BIC_CONNECTING,APP_CONNECT);
   if (VarStr) free(VarStr);
-  if (AddressStr) free(AddressStr);
   //Printf(BIC_CONNECTING,"*** Connecting to %d.%d.%d.%d:%d",AddressDigits[0],AddressDigits[1],AddressDigits[2],AddressDigits[3],(unsigned short)m_pDetails->m_Port);
 
   //switch(m_pSocket->Connect(m_pDetails->m_Name,(unsigned short)m_pDetails->m_Port))

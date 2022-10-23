@@ -1515,6 +1515,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\Readme.md"
+			>
+		</File>
+		<File
 			RelativePath="..\Distribution\Release\Readme.txt"
 			>
 		</File>
