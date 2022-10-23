@@ -56,6 +56,12 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
   // simple error handling for getaddrinfo
   int err = 0;
  
+
+  // --------------------------------------------------------------------
+  // Here is prototype IPv6+IPv4 resolution code
+  
+
+  // --------------------------------------------------------------------
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_CANONNAME;
   // Change to AF_UNSPEC to perform dual stack lookups with IPv6 preferred, AF_INET for IPv4 only

@@ -52,7 +52,7 @@ Afterwards, we need to generate xmlversion.h for compilation to succeed and corr
 numbers to be built into the application. Open a command prompt and navigate to 
 \HydraIRC\libs\libxml2\win32 and execute:
 
-cscript configure.js iconv:no xptr_locs:yes
+cscript configure.js iconv:no xptr_locs:yes ftp:no
 
 libXML2 will now build successfuly, and the entire HydraIRC project will now build and run. 
 
