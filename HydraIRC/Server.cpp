@@ -591,7 +591,18 @@ void IRCServer::ActualConnect( DWORD Address )
   // do socket connect
 
   InitVariables();
-  char *AddressStr = GetIPv4AddressString(Address);
+
+  char AddressStr[INET_ADDRSTRLEN], AddressStr6[INET6_ADDRSTRLEN];
+
+  if(inet_ntop(AF_INET, &Address, AddressStr, sizeof(AddressStr)) != NULL)
+  {
+	  Printf(BIC_ERROR, "IPv4");
+  } else 
+  if (inet_ntop(AF_INET6, &Address, AddressStr6, sizeof(AddressStr6)) != NULL)
+  {
+	  Printf(BIC_ERROR, "IPv6");
+  }
+  
   char *VarStr = HydraIRC_BuildString(512,g_DefaultStrings[DEFSTR_Server_ConnectAddress],UseEmptyString(AddressStr),m_pDetails->m_Port);
   m_Variables[VID_ALL] = UseEmptyString(VarStr);
   OutputFormatter(BIC_CONNECTING,APP_CONNECT);

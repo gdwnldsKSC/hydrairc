@@ -24,9 +24,11 @@ The main reasons for the project not receiving much attention until now (October
 * The original author has learnt much about software development doesn't like working the codebase.
 
 
-September 2022: 
+September/October 2022: 
 
-Updates to libXML and Visual Studio 2008 build compatibility/instructions provided by gdwnldsKSC
+Many updates and changes, future fixes, core library updates, cleanup, beginning IPv6 work, etc
+See CHANGES.TXT for details!
+- gdwnldsKSC
 
 ## Code
 

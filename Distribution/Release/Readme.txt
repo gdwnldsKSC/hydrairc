@@ -41,6 +41,8 @@ other information (e.g.  exception address, version, etc..)
 
 Read all of this file, even if you're upgrading!
 
+Minimum System Requirements: Windows XP SP1
+
 Installation
 ============
 
