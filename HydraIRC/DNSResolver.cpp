@@ -24,6 +24,7 @@
 #include "StdAfx.h"
 #include "HydraIRC.h"
 
+#define MAX_HOSTNAME 128
 
 CDNSResolver::CDNSResolver(void)
 {
@@ -59,9 +60,39 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 
   // --------------------------------------------------------------------
   // Here is prototype IPv6+IPv4 resolution code
-  
+  struct addrinfo hints6, *res6;
+  char ipstring[MAX_HOSTNAME];
+  char portstring[MAX_HOSTNAME];
+  int ret = 0;
+  int port = 6667;
+
+  sprintf(portstring, "%d", port);
+  sys_Printf(BIC_ERROR, "portstring at init: %s\n", portstring);
+  memset(&hints6, 0, sizeof(struct addrinfo));
+  hints6.ai_family = AF_INET;
+  hints6.ai_flags = AI_CANONNAME | AI_ADDRCONFIG;
+  hints6.ai_socktype = SOCK_STREAM;
+
+  ret = getaddrinfo(pDNSRI->m_fqdn, NULL, &hints6, &res6);
+  if (ret != 0)
+	  sys_Printf(BIC_ERROR, "getaddrinfo failed\n");
+  else
+	  sys_Printf(BIC_ERROR, "getaddrinfo success!\n");
+
+  if(res6->ai_family == AF_INET)
+  {
+	inet_ntop(AF_INET, (void*) &((struct sockaddr_in*) res6->ai_addr)->sin_addr, ipstring, sizeof(ipstring));
+	sys_Printf(BIC_ERROR, "IPv4: %s\n", ipstring);
+  } else if (res6->ai_family == AF_INET6)
+  {
+	inet_ntop(AF_INET6, (void*) &((struct sockaddr_in6*) res6->ai_addr)->sin6_addr, ipstring, sizeof(ipstring));
+	sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
+  }
 
   // --------------------------------------------------------------------
+
+
+
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_CANONNAME;
   // Change to AF_UNSPEC to perform dual stack lookups with IPv6 preferred, AF_INET for IPv4 only
