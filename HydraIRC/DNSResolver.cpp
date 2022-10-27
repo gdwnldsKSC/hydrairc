@@ -51,70 +51,51 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 
   struct addrinfo hints, *res;
   // Init hints with zeros before usage
-  memset(&hints, 0, sizeof(hints));
+  memset(&hints, 0, sizeof(struct addrinfo));
   // vector that will contain all returned resolution addresses
   std::vector<in_addr*> in_addrs;
-  // simple error handling for getaddrinfo
-  int err = 0;
- 
-
-  // --------------------------------------------------------------------
-  // Here is prototype IPv6+IPv4 resolution code
-  struct addrinfo hints6, *res6;
-  char ipstring[MAX_HOSTNAME];
-  char portstring[MAX_HOSTNAME];
-  int ret = 0;
-  int port = 6667;
-
-  sprintf(portstring, "%d", port);
-  sys_Printf(BIC_ERROR, "portstring at init: %s\n", portstring);
-  memset(&hints6, 0, sizeof(struct addrinfo));
-  hints6.ai_family = AF_INET;
-  hints6.ai_flags = AI_CANONNAME | AI_ADDRCONFIG;
-  hints6.ai_socktype = SOCK_STREAM;
-
-  ret = getaddrinfo(pDNSRI->m_fqdn, NULL, &hints6, &res6);
-  if (ret != 0)
-	  sys_Printf(BIC_ERROR, "getaddrinfo failed\n");
-  else
-	  sys_Printf(BIC_ERROR, "getaddrinfo success!\n");
-
-  if(res6->ai_family == AF_INET)
-  {
-	inet_ntop(AF_INET, (void*) &((struct sockaddr_in*) res6->ai_addr)->sin_addr, ipstring, sizeof(ipstring));
-	sys_Printf(BIC_ERROR, "IPv4: %s\n", ipstring);
-  } else if (res6->ai_family == AF_INET6)
-  {
-	inet_ntop(AF_INET6, (void*) &((struct sockaddr_in6*) res6->ai_addr)->sin6_addr, ipstring, sizeof(ipstring));
-	sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
-  }
-
-  // --------------------------------------------------------------------
-
-
-
+  std::vector<in_addr6*> in_addrs6;
+  
+  hints.ai_family = AF_UNSPEC;
+  hints.ai_flags = AI_CANONNAME | AI_ADDRCONFIG; // AI_ADDRCONFIG means we return IPv4 addresses only on IPv4 only systems
   hints.ai_socktype = SOCK_STREAM;
-  hints.ai_flags = AI_CANONNAME;
-  // Change to AF_UNSPEC to perform dual stack lookups with IPv6 preferred, AF_INET for IPv4 only
-  hints.ai_family = AF_INET;
 
-  if ((err = getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res)) != 0) {
-	  sys_Printf(BIC_INFO, "error %d\n", err);
-  }
- 
-  // prepare to build hostent struct from getaddrinfo data - take first address and put it into in_addrs
-  // using vector we can potentially rotate addresses in a future release from a single DNS resolution
-  for(addrinfo *p_addr = res; p_addr != NULL; p_addr = p_addr->ai_next) {
-      in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p_addr->ai_addr)->sin_addr);
-  }
-  in_addrs.push_back(NULL);
+  getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res);
 
-  // Here we take the output of getaddrinfo and convert it to a hostent for existing code compatibility
-  hp->h_name = res->ai_canonname;
-  hp->h_aliases = NULL;
-  hp->h_addrtype = AF_INET;
-  hp->h_length = sizeof(in_addr);
-  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
+  // implement our old IPv4 only support 
+  for(addrinfo *p = res; p != NULL; p = p->ai_next)
+  {
+	  char ipstring[MAX_HOSTNAME];
+	  if(p->ai_family == AF_INET) { // IPv4
+		  hp->h_name = p->ai_canonname;
+		  hp->h_aliases = NULL;
+		  hp->h_addrtype = p->ai_family;
+		  hp->h_length = p->ai_addrlen;
+
+		  in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p->ai_addr)->sin_addr);
+		  in_addrs.push_back(NULL);
+		  inet_ntop(AF_INET, (void*) &((struct sockaddr_in*)p->ai_addr)->sin_addr, ipstring, sizeof(ipstring));
+		  sys_Printf(BIC_ERROR, "IPv4: %s\n", ipstring);
+
+		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
+		  break;
+	  } else { // IPv6
+		  hp->h_name = p->ai_canonname;
+		  hp->h_aliases = NULL;
+		  hp->h_addrtype = p->ai_family;
+		  hp->h_length = p->ai_addrlen;
+
+		  in_addrs6.push_back(&reinterpret_cast<sockaddr_in6*>(p->ai_addr)->sin6_addr);
+		  in_addrs6.push_back(NULL);
+
+		  inet_ntop(AF_INET6, (void*) &((struct sockaddr_in6*) res->ai_addr)->sin6_addr, ipstring, sizeof(ipstring));
+		  sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
+		  
+		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs6[0]);
+		  break; // - commented out, once IPv6 works fully will re-add
+	  }
+  }
+
 
   // Signal the calling window
   if (hp != NULL)
