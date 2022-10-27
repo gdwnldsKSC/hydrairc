@@ -92,7 +92,7 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 		  sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
 		  
 		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs6[0]);
-		  break; // - commented out, once IPv6 works fully will re-add
+		  // break; // - commented out, once IPv6 works fully will re-add
 	  }
   }
 
