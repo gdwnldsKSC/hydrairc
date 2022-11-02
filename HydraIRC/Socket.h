@@ -31,7 +31,7 @@ class Socket
 {
 private:
   struct hostent *m_hp;
-	struct sockaddr_in m_sin;
+  struct sockaddr_in m_sin;
   HWND m_hWnd; // for event notification
   char m_Buf[8192];
   int m_MessageID;
