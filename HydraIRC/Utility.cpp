@@ -3,27 +3,17 @@
   HydraIRC
   Copyright (C) 2002-2006 Dominic Clifton aka Hydra
 
-  HydraIRC limited-use source license
-
-  1) You can:
-  1.1) Use the source to create improvements and bug-fixes to send to the
-       author to be incorporated in the main program.
-  1.2) Use it for review/educational purposes.
-
-  2) You can NOT:
-  2.1) Use the source to create derivative works. (That is, you can't release
-       your own version of HydraIRC with your changes in it)
-  2.2) Compile your own version and sell it.
-  2.3) Distribute unmodified, modified source or compiled versions of HydraIRC
-       without first obtaining permission from the author. (I want one place
-       for people to come to get HydraIRC from)
-  2.4) Use any of the code or other part of HydraIRC in anything other than 
-       HydraIRC.
-       
-  3) All code submitted to the project:
-  3.1) Must not be covered by any license that conflicts with this license 
-       (e.g. GPL code)
-  3.2) Will become the property of the author.
+  This program is free software: you can redistribute it and/or modify  
+  it under the terms of the GNU General Public License as published by  
+  the Free Software Foundation, version 3.
+ 
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+  General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License 
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -280,6 +270,57 @@ DWORD ResolveFQDN(char *fqdn)
     }
   }
   return Address;
+}
+
+
+// implementation of inet_pton and inet_ntop which is not present on windows XP
+// These function do the same thing as inet_addr but work with both IPv4 and v6
+
+int inet_pton(int af, const char *src, void *dst)
+{
+  struct sockaddr_storage ss;
+  int size = sizeof(ss);
+  char src_copy[INET6_ADDRSTRLEN+1];
+
+  ZeroMemory(&ss, sizeof(ss));
+  /* stupid non-const API */
+  strncpy (src_copy, src, INET6_ADDRSTRLEN+1);
+  src_copy[INET6_ADDRSTRLEN] = 0;
+
+  if (WSAStringToAddress(src_copy, af, NULL, (struct sockaddr *)&ss, &size) == 0) {
+    switch(af) {
+      case AF_INET:
+    *(struct in_addr *)dst = ((struct sockaddr_in *)&ss)->sin_addr;
+    return 1;
+      case AF_INET6:
+    *(struct in6_addr *)dst = ((struct sockaddr_in6 *)&ss)->sin6_addr;
+    return 1;
+    }
+  }
+  return 0;
+}
+
+const char *inet_ntop(int af, const void *src, char *dst, socklen_t size)
+{
+  struct sockaddr_storage ss;
+  unsigned long s = size;
+
+  ZeroMemory(&ss, sizeof(ss));
+  ss.ss_family = af;
+
+  switch(af) {
+    case AF_INET:
+      ((struct sockaddr_in *)&ss)->sin_addr = *(struct in_addr *)src;
+      break;
+    case AF_INET6:
+      ((struct sockaddr_in6 *)&ss)->sin6_addr = *(struct in6_addr *)src;
+      break;
+    default:
+      return NULL;
+  }
+  /* cannot direclty use &size because of strict aliasing rules */
+  return (WSAAddressToString((struct sockaddr *)&ss, sizeof(ss), NULL, dst, &s) == 0)?
+          dst : NULL;
 }
 
 // get the address used to connect to the internet

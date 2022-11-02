@@ -571,7 +571,7 @@ public:
 
   // Connecting
   void Connect( void );
-  void ActualConnect( DWORD Address );
+  void ActualConnect( sockaddr_storage Address );
   void Disconnect( BOOL Reconnect = TRUE, BOOL SendQuit = TRUE );
   void Reconnect( void );
 

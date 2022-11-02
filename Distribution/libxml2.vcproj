@@ -11,6 +11,9 @@
 		<Platform
 			Name="Win32"
 		/>
+		<Platform
+			Name="x64"
+		/>
 	</Platforms>
 	<ToolFiles>
 	</ToolFiles>
@@ -89,6 +92,104 @@
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				ImportLibrary=".\libxml2/libxml2.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Creating static library libxml2_a.lib..."
+				CommandLine="lib /nologo /out:libxml2\libxml2_a.lib libxml2\*.obj&#x0D;&#x0A;"
+				Outputs="libxml2\libxml2_a.lib"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="_DEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="3"
+				TypeLibraryName=".\libxml2/libxml2.tlb"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\include"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL;LIBXML_EXPR_ENABLED"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				PrecompiledHeaderFile=".\libxml2/libxml2.pch"
+				AssemblerListingLocation=".\libxml2/"
+				ObjectFile=".\libxml2/"
+				ProgramDataBaseFileName=".\libxml2/"
+				BrowseInformation="1"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
+				CompileAs="0"
+				ShowIncludes="false"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_DEBUG"
+				Culture="2057"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/MACHINE:X64"
+				AdditionalDependencies="wsock32.lib odbc32.lib odbccp32.lib ws2_32.lib"
+				OutputFile=".\libxml2/libxml2.dll"
+				LinkIncremental="2"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\libxml2.def"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile=".\libxml2/libxml2.pdb"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary=".\libxml2/libxml2.lib"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -206,6 +307,101 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			ConfigurationType="2"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Creating static library libxml2_a.lib..."
+				CommandLine="lib /nologo /out:libxml2\libxml2_a.lib libxml2\*.obj&#x0D;&#x0A;"
+				Outputs="libxml2\libxml2_a.lib"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="NDEBUG"
+				MkTypLibCompatible="true"
+				SuppressStartupBanner="true"
+				TargetEnvironment="3"
+				TypeLibraryName=".\libxml2/libxml2.tlb"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				InlineFunctionExpansion="1"
+				AdditionalIncludeDirectories="..\include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL;LIBXML_EXPR_ENABLED"
+				StringPooling="true"
+				RuntimeLibrary="0"
+				EnableFunctionLevelLinking="true"
+				PrecompiledHeaderFile=".\libxml2/libxml2.pch"
+				AssemblerListingLocation=".\libxml2/"
+				ObjectFile=".\libxml2/"
+				ProgramDataBaseFileName=".\libxml2/"
+				WarningLevel="3"
+				SuppressStartupBanner="true"
+				CompileAs="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="NDEBUG"
+				Culture="2057"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalOptions="/MACHINE:X64"
+				AdditionalDependencies="wsock32.lib odbc32.lib odbccp32.lib ws2_32.lib"
+				OutputFile=".\libxml2/libxml2.dll"
+				LinkIncremental="1"
+				SuppressStartupBanner="true"
+				ModuleDefinitionFile=".\libxml2.def"
+				ProgramDatabaseFile=".\libxml2/libxml2.pdb"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary=".\libxml2/libxml2.lib"
+				TargetMachine="0"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
 	</Configurations>
 	<References>
 	</References>
@@ -236,10 +432,6 @@
 			</File>
 			<File
 				RelativePath="..\dict.c"
-				>
-			</File>
-			<File
-				RelativePath="..\DOCBparser.c"
 				>
 			</File>
 			<File
@@ -292,7 +484,27 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="cl /I&quot;..&quot; /I&quot;..\include&quot; /nologo /EP &quot;$(InputPath)&quot; &gt; libxml2.def&#x0D;&#x0A;"
+						AdditionalDependencies="../include/libxml/xmlversion.h;"
+						Outputs="libxml2.def"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
 					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						CommandLine="cl /I&quot;..&quot; /I&quot;..\include&quot; /nologo /EP &quot;$(InputPath)&quot; &gt; libxml2.def&#x0D;&#x0A;"
+						AdditionalDependencies="../include/libxml/xmlversion.h;"
+						Outputs="libxml2.def"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
@@ -418,6 +630,10 @@
 				RelativePath="..\xpointer.c"
 				>
 			</File>
+			<File
+				RelativePath="..\xzlib.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -433,6 +649,10 @@
 			</File>
 			<File
 				RelativePath="..\include\libxml\debugXML.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\libxml\dict.h"
 				>
 			</File>
 			<File
@@ -488,6 +708,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\include\libxml\relaxng.h"
+				>
+			</File>
+			<File
 				RelativePath="..\include\libxml\SAX.h"
 				>
 			</File>
@@ -540,10 +764,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\include\libxml\xmlwin32version.h"
-				>
-			</File>
-			<File
 				RelativePath="..\include\libxml\xpath.h"
 				>
 			</File>
@@ -561,10 +781,6 @@
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
 		</Filter>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

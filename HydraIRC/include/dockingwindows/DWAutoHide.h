@@ -15,6 +15,25 @@
 
 #ifndef __WTL_DW__DWAUTOHIDE_H__
 #define __WTL_DW__DWAUTOHIDE_H__
+// 64-bit compilation fixes
+#ifdef _WIN64
+
+#undef GCL_MENUNAME
+#undef GCL_HBRBACKGROUND
+#undef GCL_HCURSOR
+#undef GCL_HICON
+#undef GCL_HMODULE
+#undef GCL_WNDPROC
+#undef GCL_HICONSM
+#define GCL_MENUNAME       (-8)
+#define GCL_HBRBACKGROUND  (-10)
+#define GCL_HCURSOR        (-12)
+#define GCL_HICON          (-14)
+#define GCL_HMODULE        (-16)
+#define GCL_WNDPROC        (-24)
+#define GCL_HICONSM        (-34)
+
+#endif 
 
 #pragma once
 
