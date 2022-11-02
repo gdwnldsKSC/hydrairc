@@ -15,14 +15,16 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
 
-22/October/2022 - AM (0.3.172) - Experimental
+2/November/2022 - AM (0.3.172) - Experimental
   gdwnldsKSC
   * Since we're using Windows SDK 6.0 now we can tidy up some defines and set to use OS provided 4.1 or higher
-    RichEdit, giving us more functionality, faster speed, and  
+    RichEdit, giving us more functionality, faster speed, and more advanced future unicode support.
     RichEdit component - Requires a minimum of Windows XP SP1 now.
   * More license updates
   * Converted more functions to IPv6 safe functions and included implementations of inet_pton and inet_ntop
     in Utility.cpp as Windows XP does not have these functions included (Vista and forward, however, do).
+  * Converted address storage to sockaddr_storage being passed out from DNS resolver, enabling IPv6 addresses
+    to be brought out and safely handled/used. Now using sockaddr_storage struct in IRC connection pathways.
 
 18/October/2022 - AM (0.3.171) - Experimental
   gdwnldsKSC

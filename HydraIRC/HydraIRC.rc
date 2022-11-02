@@ -113,10 +113,10 @@ BEGIN
             VALUE "FileDescription", "HydraIRC"
             VALUE "FileVersion", "0, 3, 172, 0"
             VALUE "InternalName", "HydraIRC"
-            VALUE "LegalCopyright", "Dominic Clifton - Copyright 2002-2004"
+            VALUE "LegalCopyright", "Dominic Clifton - Copyright 2002-2006"
             VALUE "OriginalFilename", "HydraIRC.exe"
             VALUE "ProductName", "HydraIRC"
-            VALUE "ProductVersion", "0, 3, 172, 0"
+            VALUE "ProductVersion", "0.3.172.0"
         END
     END
     BLOCK "VarFileInfo"
