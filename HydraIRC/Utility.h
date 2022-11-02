@@ -1004,6 +1004,14 @@ public:
   }
 };
 
+// socket union to allow easier manipulation/usage of IPv4/IPv6 independant code
+union socket_address
+{
+   struct sockaddr addr;
+   struct sockaddr_in sin_addr;
+   struct sockaddr_in6 sin6_addr;
+   struct sockaddr_storage storage;
+};
 
 // Functions defined in Utility.cpp
 int ReplaceString(char **buf,const char *s1,const char *s2); // replace all occurences of s1 in buf with s2, reallocating as needed
@@ -1047,3 +1055,5 @@ BOOL Clipboard_Copy(int format, char *data, int datalength);
 char *GetIPv4AddressString(DWORD Address);
 LRESULT OnEnLink(int idCtrl, LPNMHDR pnmh, BOOL& bHandled);
 char *ReplaceInvalidFilenameCharacters(char *FileName,char Replace);
+int inet_pton(int af, const char *src, void *dst);
+const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);

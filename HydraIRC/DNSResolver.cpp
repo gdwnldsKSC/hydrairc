@@ -24,6 +24,7 @@
 #include "StdAfx.h"
 #include "HydraIRC.h"
 
+#define MAX_HOSTNAME 128
 
 CDNSResolver::CDNSResolver(void)
 {
@@ -50,40 +51,75 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 
   struct addrinfo hints, *res;
   // Init hints with zeros before usage
-  memset(&hints, 0, sizeof(hints));
+  memset(&hints, 0, sizeof(struct addrinfo));
   // vector that will contain all returned resolution addresses
   std::vector<in_addr*> in_addrs;
-  // simple error handling for getaddrinfo
-  int err = 0;
- 
+  std::vector<in_addr6*> in_addrs6;
+  
+  hints.ai_family = AF_UNSPEC;
+  hints.ai_flags = AI_CANONNAME | AI_ADDRCONFIG; // AI_ADDRCONFIG means we return IPv4 addresses only on IPv4 only systems
   hints.ai_socktype = SOCK_STREAM;
-  hints.ai_flags = AI_CANONNAME;
-  // Change to AF_UNSPEC to perform dual stack lookups with IPv6 preferred, AF_INET for IPv4 only
-  hints.ai_family = AF_INET;
 
-  if ((err = getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res)) != 0) {
-	  sys_Printf(BIC_INFO, "error %d\n", err);
-  }
- 
-  // prepare to build hostent struct from getaddrinfo data - take first address and put it into in_addrs
-  // using vector we can potentially rotate addresses in a future release from a single DNS resolution
-  for(addrinfo *p_addr = res; p_addr != NULL; p_addr = p_addr->ai_next) {
-      in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p_addr->ai_addr)->sin_addr);
-  }
-  in_addrs.push_back(NULL);
+  getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res);
 
-  // Here we take the output of getaddrinfo and convert it to a hostent for existing code compatibility
-  hp->h_name = res->ai_canonname;
-  hp->h_aliases = NULL;
-  hp->h_addrtype = AF_INET;
-  hp->h_length = sizeof(in_addr);
-  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
+  // socket_address defined in utility.h, allows usage/calling/writing for IP version indepenedant code
+  socket_address resolvedAddress;
+  memset(&resolvedAddress, 0, sizeof(resolvedAddress));
+
+  // implement our old IPv4 only support 
+  for(addrinfo *p = res; p != NULL; p = p->ai_next)
+  {
+	  char ipstring[MAX_HOSTNAME];
+	  if(p->ai_family == AF_INET) { // IPv4
+		  hp->h_name = p->ai_canonname;
+		  hp->h_aliases = NULL;
+		  hp->h_addrtype = p->ai_family;
+		  hp->h_length = p->ai_addrlen;
+
+		  in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p->ai_addr)->sin_addr);
+		  in_addrs.push_back(NULL);
+		  inet_ntop(AF_INET, (void*) &((struct sockaddr_in*)p->ai_addr)->sin_addr, ipstring, sizeof(ipstring));
+		  sys_Printf(BIC_ERROR, "IPv4: %s\n", ipstring);
+
+
+		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
+
+		  // copy the result into our socket_address union and display via inet_ntop the sockaddr_in member
+		  memcpy(&resolvedAddress.sin_addr.sin_addr, hp->h_addr_list[0], hp->h_length);
+		  resolvedAddress.sin_addr.sin_family = AF_INET;
+  		  inet_ntop(AF_INET, &resolvedAddress.sin_addr.sin_addr, ipstring, sizeof(ipstring));
+		  sys_Printf(BIC_ERROR, "IPv4 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin_addr.sin_family);
+
+		  break;
+	  } else { // IPv6
+		  hp->h_name = p->ai_canonname;
+		  hp->h_aliases = NULL;
+		  hp->h_addrtype = p->ai_family;
+		  hp->h_length = p->ai_addrlen;
+
+		  in_addrs6.push_back(&reinterpret_cast<sockaddr_in6*>(p->ai_addr)->sin6_addr);
+		  in_addrs6.push_back(NULL);
+
+		  inet_ntop(AF_INET6, (void*) &((struct sockaddr_in6*) res->ai_addr)->sin6_addr, ipstring, sizeof(ipstring));
+		  sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
+		  
+		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs6[0]);
+
+		  // copy the result into our socket_address union and display via inet_ntop the sockaddr_in6 member
+		  memcpy(&resolvedAddress.sin6_addr.sin6_addr, hp->h_addr_list[0], hp->h_length);
+		  resolvedAddress.sin_addr.sin_family = AF_INET6;
+		  inet_ntop(AF_INET6, &resolvedAddress.sin6_addr.sin6_addr, ipstring, sizeof(ipstring));
+		  sys_Printf(BIC_ERROR, "IPv6 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin6_addr.sin6_family);
+		  // break; // - commented out, once IPv6 works fully will re-add
+	  }
+  }
+
 
   // Signal the calling window
   if (hp != NULL)
   {
     // Success!
-    memcpy(&pDNSRI->m_address, hp->h_addr_list[0], sizeof(DWORD));
+	  memcpy(&pDNSRI->m_address, &resolvedAddress.storage, sizeof(resolvedAddress.storage));
   }
 
   // ok, some time might have passed, and the user may have closed the window

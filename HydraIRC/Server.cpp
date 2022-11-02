@@ -68,41 +68,41 @@ BOOL UpdateServerDetails(IRCServerDetails *pServerDetails)
 
 char *g_QuitMessages[] = 
 {
-  //"WOW! This IRC Client ownz! \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- \\o/",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- Get \002hot chicks\002 here!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Chicks dig it",
-  //"The IRC Client of the Gods! -> http://www.hydrairc.com <- \002HydraIRC\002",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- irc client ownage!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- *\002I\002* use it, so it must be good!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Nine out of ten l33t h4x0rz prefer it",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- s0 d4Mn l33t |t'z 5c4rY!",
-  //"\002HydraIRC\002 rocks! -> http://www.hydrairc.com <-", 
-  "I love my \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  //"Like VS.net's GUI?  Then try \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <-",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- The dawn of a new IRC era",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- IRC has never been so good",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- The professional IRC Client :D",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- Try something fresh",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- Leading Edge IRC",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- The future of IRC",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- State of the art IRC",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- IRC with a difference",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Go on, try it!",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- 100,000+ downloads can't be wrong",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- IRC for those that like to be different",
-  "Want to be different? Try \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- The alternative IRC client",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Like it?  Visit #hydrairc on Freenode",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Would you like to know more?",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Organize your IRC",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Now with extra fish!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Wibbly Wobbly IRC",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- It'll be on slashdot one day...",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- In tests, 0x09 out of 0x0A l33t h4x0rz prefer it :)",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Po-ta-to, boil em, mash em, stick em in a stew.",
-  "Try \002HydraIRC\002 -> http://www.hydrairc.com <-" 
+  //"WOW! This IRC Client ownz! \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- \\o/",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Get \002hot chicks\002 here!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Chicks dig it",
+  //"The IRC Client of the Gods! -> https://github.com/HydraIRC/hydrairc <- \002HydraIRC\002",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- irc client ownage!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- *\002I\002* use it, so it must be good!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Nine out of ten l33t h4x0rz prefer it",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- s0 d4Mn l33t |t'z 5c4rY!",
+  //"\002HydraIRC\002 rocks! -> https://github.com/HydraIRC/hydrairc <-", 
+  "I love my \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  //"Like VS.net's GUI?  Then try \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The dawn of a new IRC era",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- IRC has never been so good",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The professional IRC Client :D",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Try something fresh",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Leading Edge IRC",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The future of IRC",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- State of the art IRC",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- IRC with a difference",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Go on, try it!",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- 100,000+ downloads can't be wrong",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- IRC for those that like to be different",
+  "Want to be different? Try \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The alternative IRC client",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Like it?  Visit #hydrairc on Freenode",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Would you like to know more?",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Organize your IRC",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Now with extra fish!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Wibbly Wobbly IRC",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- It'll be on slashdot one day...",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- In tests, 0x09 out of 0x0A l33t h4x0rz prefer it :)",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Po-ta-to, boil em, mash em, stick em in a stew.",
+  "Try \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-" 
 };
 
 char *g_ServerStatusNames[4] = 
@@ -550,9 +550,10 @@ void IRCServer::Connect( void )
   }
   else
   {
-
-	  DWORD Address = inet_addr(m_pDetails->m_Name); // were we given an IP address ?
-	  if (Address == INADDR_NONE)
+	  sockaddr_storage Address;
+	  memset(&Address, 0, sizeof(Address));
+	  inet_pton(AF_INET, m_pDetails->m_Name, &((sockaddr_in *)&Address)->sin_addr); // were we given an IP address ?
+	  if (!(&((sockaddr_in *)&Address)->sin_addr == 0))
     {
       // do the name resolution and wait for WM_DNSEVENT
 
@@ -571,14 +572,14 @@ void IRCServer::Connect( void )
   }
 }
 
-void IRCServer::ActualConnect( DWORD Address )
+void IRCServer::ActualConnect( sockaddr_storage Address )
 {
   // User may have already cancelled the connect.
   // or we might get called due to a late DNS resolution attempt.
   if (m_Status != SVR_STATE_CONNECTING)
     return;
 
-  if (!Address)
+  if (!((sockaddr_in *)&Address)->sin_addr.S_un.S_addr)
   {
     InitVariables();
     m_Variables[VID_ALL] = g_DefaultStrings[DEFSTR_Server_ResolveError];
@@ -591,16 +592,26 @@ void IRCServer::ActualConnect( DWORD Address )
   // do socket connect
 
   InitVariables();
-  char *AddressStr = GetIPv4AddressString(Address);
+
+  char AddressStr[INET6_ADDRSTRLEN];
+
+  if(inet_ntop(AF_INET, &((sockaddr_in *)&Address)->sin_addr, AddressStr, sizeof(AddressStr)) != NULL)
+  {
+	  Printf(BIC_ERROR, "IPv4");
+  } else 
+	  if (inet_ntop(AF_INET6, &((sockaddr_in6 *)&Address)->sin6_addr, AddressStr, sizeof(AddressStr)) != NULL)
+  {
+	  Printf(BIC_ERROR, "IPv6");
+  }
+  
   char *VarStr = HydraIRC_BuildString(512,g_DefaultStrings[DEFSTR_Server_ConnectAddress],UseEmptyString(AddressStr),m_pDetails->m_Port);
   m_Variables[VID_ALL] = UseEmptyString(VarStr);
   OutputFormatter(BIC_CONNECTING,APP_CONNECT);
   if (VarStr) free(VarStr);
-  if (AddressStr) free(AddressStr);
   //Printf(BIC_CONNECTING,"*** Connecting to %d.%d.%d.%d:%d",AddressDigits[0],AddressDigits[1],AddressDigits[2],AddressDigits[3],(unsigned short)m_pDetails->m_Port);
 
   //switch(m_pSocket->Connect(m_pDetails->m_Name,(unsigned short)m_pDetails->m_Port))
-  switch(m_pSocket->Connect(Address,(unsigned short)m_pDetails->m_Port))
+  switch(m_pSocket->Connect(((sockaddr_in *)&Address)->sin_addr.S_un.S_addr,(unsigned short)m_pDetails->m_Port))
   {
     case SOCK_ERR_NONE:
       break;

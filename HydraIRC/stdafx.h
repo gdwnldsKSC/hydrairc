@@ -58,11 +58,16 @@
 
 #pragma once
 
-// Change these values to use different versions
-#define WINVER		0x0500
-#define _WIN32_WINNT	0x0400 // only needed for WM_MOUSEWHEEL
-#define _WIN32_IE	0x0501
-#define _RICHEDIT_VER	0x0300 // 0x0300
+// Utilize Windows SDK 6.0 and up macro to handle aligned target versions
+// Winver/WinIE/etc - Windows SDK 6.0 Minimum, VS2008 included 
+#define NTDDI_VERSION	NTDDI_WINXPSP1
+#define _WIN32_WINNT	_WIN32_WINNT_WINXP
+// Updating to latest version of Rich Edit control included in windows
+// as standard for additional unicode & language support. Req XP SP1 and up
+// allows usage of latest richedit control - for example, on W11 it loads
+// version 8.5, whereas on XP SP1 it loads 4.1.
+#define _RICHEDIT_VER	0x0500
+
 
 #define _WTL_NO_CSTRING
 //#define _WTL_NO_WTYPES

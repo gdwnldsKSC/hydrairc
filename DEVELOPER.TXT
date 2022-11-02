@@ -5,28 +5,14 @@ HydraIRC Developer Notes
 
 
 HydraIRC is written using Visual Studio .NET 2003.
-The code has been ported to Visual Studio .NET 2005 and support for Visual Studio .NET 2003
-has been dropped.
+The code has been ported to Visual Studio .NET 2008 and support for Visual Studio .NET 2003
+and Visual Studio 2005 has been dropped.
 
-Visual Studio.NET 2005 including Service Pack 1 is REQUIRED to build HydraIRC.
-(due to changes in atlrx.h, failure to compile with SP1 will result access violations
-occuring in the regular expression matcher)
+Visual Studio.NET 2008 is REQUIRED to build HydraIRC.
 
 If you want to start helping out, check out the TODO.TXT and try and fix some bugs,
 then start with some of the simpler things until you're used to the codebase.
 
-9/23/22 - gdwnldsKSC: At this point in 2022 I am rebaselining on Visual Studio 2008 to bring the libraries up to almost within a decade in preparation to bringing to newer VS versions and runtimes. Testing is only being performed on Windows 7, 8.1 10, and 11 but will probably still work just fine on Windows XP as it is now. 
-
-
-SVN Access
-==========
-
-DO NOT COMMIT CHANGES TO THE SVN TREE.
-
-Currently there is registered developer read and write access, but this write
-access will be removed in the near future.
-
-To get your changes included, see "Submitting Patches" below.
 
 Compiling
 =========
@@ -37,7 +23,7 @@ libxml2-master.zip
 WTL 9.0 - https://sourceforge.net/projects/wtl/files/WTL%209.0/WTL%209.0.4140%20Final/
 ATL Server includes/package - https://github.com/gabegundy/atlserver
 
-HydraIRC is written and developed using Visual Studio .NET 2003 and this is the
+HydraIRC is written and developed using Visual Studio .NET 2008 and this is the
 only supported build environment.  If you're using something else then you're on
 your own.
 
@@ -45,25 +31,34 @@ your own.
 
 VISUAL STUDIO 2008 NOTES: 
 
-The ATL Server package has become almost impossible to find as a regular download, but it can now be obtained at https://github.com/gabegundy/atlserver
+The ATL Server package has become almost impossible to find as a regular download, 
+but it can now be obtained at https://github.com/gabegundy/atlserver
 
-You will need this in addition to the below mentioned WTL 9.0 files (Add them to your global includes for ease of use) in order to compile on VS 2008 or newer. Add the WTL 9.0 and ATL Server include directories to global include paths. 
+You will need this in addition to the below mentioned WTL 9.0 files (Add them to your 
+global includes for ease of use) in order to compile on VS 2008 or newer. Add the WTL 9.0 
+and ATL Server include directories to global include paths. 
 
 -----------------------------------
 
-LIBXML BUILD NOTES (Upgrade libxml to current 18 Oct 2022 master): A Custom VCProj file was included in the distro folder in the original hydraIRC bundle of libxml - the one included in the updated repository is straight from the libxml project.
+LIBXML BUILD NOTES (Version is : Current 22 Oct 2022 master): A Custom VCProj file was 
+included in the distro folder in the original hydraIRC bundle of libxml - the one 
+included now has been modified to handle the newer libXML versions.
 
-You need to take the now included .vcproj in the distribution folder and place it into \HydraIRC\libs\libxml2\win32\ after extracting the contents of the libxml2-2.9.14 folder inside libxml2-2.9.14.zip to \HydraIRC\libs\libxml2\
+You need to take the now included .vcproj in the distribution folder and place it into 
+\HydraIRC\libs\libxml2\win32\ after extracting the contents of the libxml2-master folder 
+inside libxml2-master.zip to \HydraIRC\libs\libxml2\
 
-Afterwards, we need to generate xmlversion.h for compilation to succeed and correct version numbers to be built into the application. Open a command prompt and navigate to \HydraIRC\libs\libxml2\win32 and execute:
+Afterwards, we need to generate xmlversion.h for compilation to succeed and correct version 
+numbers to be built into the application. Open a command prompt and navigate to 
+\HydraIRC\libs\libxml2\win32 and execute:
 
-cscript configure.js iconv:no xptr_locs:y
+cscript configure.js iconv:no xptr_locs:yes ftp:no
 
 libXML2 will now build successfuly, and the entire HydraIRC project will now build and run. 
 
-Orignial HydraIRC-libxml2-20021126.zip is kept for reference in distribution folder, but should not be needed anymore. If you use this version instead, you will have to edit win32config.h and comment out the vsnprintf #define line near the bottom of the file.
-
 -----------------------------------
+
+Original build procedures pre-2022 updates: 
 
 If you are using Visual Studio .NET 2003/2002/2005 you will also need to do the following:
 

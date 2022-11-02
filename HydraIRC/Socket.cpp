@@ -3,8 +3,6 @@
   HydraIRC
   Copyright (C) 2002-2006 Dominic Clifton aka Hydra
 
-  HydraIRC limited-use source license
-
   This program is free software: you can redistribute it and/or modify  
   it under the terms of the GNU General Public License as published by  
   the Free Software Foundation, version 3.
