@@ -9,7 +9,7 @@ Please use the issue tracker to report bugs.
 ## Contributing
 
 If you want to become a member of the HydraIRC github organization then please make contact, perhaps first by submitting
-a pull request or via the HydraIRC channel on FreeNode IRC - irc://freenode.net/#hydrairc
+a pull request.
 
 Maintainers for the project are sought as the author has very little free time.
 
