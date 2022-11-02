@@ -550,9 +550,10 @@ void IRCServer::Connect( void )
   }
   else
   {
-	  DWORD Address = 0;
-	  inet_pton(AF_INET, m_pDetails->m_Name, &Address); // were we given an IP address ?
-	  if (Address == 0)
+	  sockaddr_storage Address;
+	  memset(&Address, 0, sizeof(Address));
+	  inet_pton(AF_INET, m_pDetails->m_Name, &((sockaddr_in *)&Address)->sin_addr); // were we given an IP address ?
+	  if (!(&((sockaddr_in *)&Address)->sin_addr == 0))
     {
       // do the name resolution and wait for WM_DNSEVENT
 
@@ -571,14 +572,14 @@ void IRCServer::Connect( void )
   }
 }
 
-void IRCServer::ActualConnect( DWORD Address )
+void IRCServer::ActualConnect( sockaddr_storage Address )
 {
   // User may have already cancelled the connect.
   // or we might get called due to a late DNS resolution attempt.
   if (m_Status != SVR_STATE_CONNECTING)
     return;
 
-  if (!Address)
+  if (!((sockaddr_in *)&Address)->sin_addr.S_un.S_addr)
   {
     InitVariables();
     m_Variables[VID_ALL] = g_DefaultStrings[DEFSTR_Server_ResolveError];
@@ -610,7 +611,7 @@ void IRCServer::ActualConnect( DWORD Address )
   //Printf(BIC_CONNECTING,"*** Connecting to %d.%d.%d.%d:%d",AddressDigits[0],AddressDigits[1],AddressDigits[2],AddressDigits[3],(unsigned short)m_pDetails->m_Port);
 
   //switch(m_pSocket->Connect(m_pDetails->m_Name,(unsigned short)m_pDetails->m_Port))
-  switch(m_pSocket->Connect(Address,(unsigned short)m_pDetails->m_Port))
+  switch(m_pSocket->Connect(((sockaddr_in *)&Address)->sin_addr.S_un.S_addr,(unsigned short)m_pDetails->m_Port))
   {
     case SOCK_ERR_NONE:
       break;

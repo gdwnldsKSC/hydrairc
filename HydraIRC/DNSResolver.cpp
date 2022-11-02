@@ -119,7 +119,7 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
   if (hp != NULL)
   {
     // Success!
-    memcpy(&pDNSRI->m_address, hp->h_addr_list[0], sizeof(DWORD));
+	  memcpy(&pDNSRI->m_address, &resolvedAddress.storage, sizeof(resolvedAddress.storage));
   }
 
   // ok, some time might have passed, and the user may have closed the window
