@@ -593,13 +593,13 @@ void IRCServer::ActualConnect( sockaddr_storage Address )
 
   InitVariables();
 
-  char AddressStr[INET_ADDRSTRLEN], AddressStr6[INET6_ADDRSTRLEN];
+  char AddressStr[INET6_ADDRSTRLEN];
 
-  if(inet_ntop(AF_INET, &Address, AddressStr, sizeof(AddressStr)) != NULL)
+  if(inet_ntop(AF_INET, &((sockaddr_in *)&Address)->sin_addr, AddressStr, sizeof(AddressStr)) != NULL)
   {
 	  Printf(BIC_ERROR, "IPv4");
   } else 
-  if (inet_ntop(AF_INET6, &Address, AddressStr6, sizeof(AddressStr6)) != NULL)
+	  if (inet_ntop(AF_INET6, &((sockaddr_in6 *)&Address)->sin6_addr, AddressStr, sizeof(AddressStr)) != NULL)
   {
 	  Printf(BIC_ERROR, "IPv6");
   }
