@@ -41,3 +41,4 @@ Distribution/Debug Files/Release/*
 Distribution/Debug Files/Debug/*
 Distribution/Release/Profile_Default.xml
 Distribution/Release/Profile_Default.xml
+*.ipch
