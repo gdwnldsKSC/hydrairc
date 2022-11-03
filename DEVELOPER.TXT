@@ -60,6 +60,8 @@ libXML2 will now build successfuly, and the entire HydraIRC project will now bui
 
 Build Procedure:
 	- Unzip contents of libxml2-master inside of libxml2-master.zip to HydraIRC/libs/libxml2
+	- Copy Distribution\libxml2.vcxproj and Distribution\libxml2.vcxproj.filters to
+	 - HydraIRC\libs\libxml2\win32
 	- From \HydraIRC\libs\libxml2\win32 on cmd prompt run 
 	 - cscript configure.js iconv:no xptr_locs:yes ftp:no
 	- Extract WTL9.1 to C:\WTL91 (path used in development, you can move and change this in 
