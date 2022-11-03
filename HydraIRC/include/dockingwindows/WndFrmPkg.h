@@ -835,7 +835,7 @@ protected:
 #ifdef USE_BOOST
 	mutable boost::shared_ptr<T> m_ptr;
 #else
-	mutable std::auto_ptr<T> m_ptr;
+	mutable std::shared_ptr<T> m_ptr;
 #endif
 };
 
