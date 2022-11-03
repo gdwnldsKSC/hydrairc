@@ -79,7 +79,7 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 		  in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p->ai_addr)->sin_addr);
 		  in_addrs.push_back(NULL);
 		  inet_ntop(AF_INET, (void*) &((struct sockaddr_in*)p->ai_addr)->sin_addr, ipstring, sizeof(ipstring));
-		  sys_Printf(BIC_ERROR, "IPv4: %s\n", ipstring);
+//		  sys_Printf(BIC_ERROR, "IPv4: %s\n", ipstring);
 
 
 		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
@@ -88,7 +88,7 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 		  memcpy(&resolvedAddress.sin_addr.sin_addr, hp->h_addr_list[0], hp->h_length);
 		  resolvedAddress.sin_addr.sin_family = AF_INET;
   		  inet_ntop(AF_INET, &resolvedAddress.sin_addr.sin_addr, ipstring, sizeof(ipstring));
-		  sys_Printf(BIC_ERROR, "IPv4 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin_addr.sin_family);
+//		  sys_Printf(BIC_ERROR, "IPv4 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin_addr.sin_family);
 
 		  break;
 	  } else { // IPv6
@@ -101,7 +101,7 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 		  in_addrs6.push_back(NULL);
 
 		  inet_ntop(AF_INET6, (void*) &((struct sockaddr_in6*) res->ai_addr)->sin6_addr, ipstring, sizeof(ipstring));
-		  sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
+//		  sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
 		  
 		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs6[0]);
 
@@ -109,7 +109,7 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 		  memcpy(&resolvedAddress.sin6_addr.sin6_addr, hp->h_addr_list[0], hp->h_length);
 		  resolvedAddress.sin_addr.sin_family = AF_INET6;
 		  inet_ntop(AF_INET6, &resolvedAddress.sin6_addr.sin6_addr, ipstring, sizeof(ipstring));
-		  sys_Printf(BIC_ERROR, "IPv6 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin6_addr.sin6_family);
+//		  sys_Printf(BIC_ERROR, "IPv6 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin6_addr.sin6_family);
 		  // break; // - commented out, once IPv6 works fully will re-add
 	  }
   }

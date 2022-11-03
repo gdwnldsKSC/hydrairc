@@ -596,12 +596,12 @@ void IRCServer::ActualConnect( sockaddr_storage Address )
   char AddressStr[INET6_ADDRSTRLEN];
 
   if(inet_ntop(AF_INET, &((sockaddr_in *)&Address)->sin_addr, AddressStr, sizeof(AddressStr)) != NULL)
-  {
-	  Printf(BIC_ERROR, "IPv4");
+  { 
+//	  Printf(BIC_ERROR, "IPv4");
   } else 
 	  if (inet_ntop(AF_INET6, &((sockaddr_in6 *)&Address)->sin6_addr, AddressStr, sizeof(AddressStr)) != NULL)
   {
-	  Printf(BIC_ERROR, "IPv6");
+//	  Printf(BIC_ERROR, "IPv6");
   }
   
   char *VarStr = HydraIRC_BuildString(512,g_DefaultStrings[DEFSTR_Server_ConnectAddress],UseEmptyString(AddressStr),m_pDetails->m_Port);
