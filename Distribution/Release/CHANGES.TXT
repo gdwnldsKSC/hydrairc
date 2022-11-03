@@ -15,6 +15,15 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
 
+2/November/2022 - PM (0.3.172.1) - Experimental
+  gdwnldsKSC
+  * Upgraded project to Visual Studio 2010
+  + fix to dockablewindows headers due to auto_ptr deprecation/behavior change - use std::shared_ptr
+    Otherwise, tries to dereference a null pointer and commits several access violations - as of
+	VS 2010 auto_ptr can't be accessed that way - and is removed in future versions.
+  * Upgrade to WTL 9.1
+  * Now using Windows SDK 7.0A (included with VS 2010)
+  
 2/November/2022 - AM (0.3.172) - Experimental
   gdwnldsKSC
   * Since we're using Windows SDK 6.0 now we can tidy up some defines and set to use OS provided 4.1 or higher

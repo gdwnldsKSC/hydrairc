@@ -27,7 +27,7 @@
 
 */
 
-#define VERSIONNUM "v0.3.172"
+#define VERSIONNUM "v0.3.172.1"
 #define VERSIONDATE "(2/November/2022)"
 
 #ifdef RELEASE_VERSION
