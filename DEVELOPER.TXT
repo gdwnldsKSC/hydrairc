@@ -20,7 +20,7 @@ Compiling
 Make sure you have a copy of the git repository, as well as the following files:
 
 libxml2-master.zip
-WTL 9.1 - https://sourceforge.net/projects/wtl/files/WTL%209.0/WTL%209.0.4140%20Final/
+WTL 9.1 - https://sourceforge.net/projects/wtl/files/WTL%209.1/WTL%209.1.5321%20Final/
 ATL Server includes/package - https://github.com/gabegundy/atlserver
 
 HydraIRC is written and developed using Visual Studio .NET 2008 and this is the
