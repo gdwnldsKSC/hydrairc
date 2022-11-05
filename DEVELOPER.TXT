@@ -23,7 +23,7 @@ libxml2-master.zip
 WTL 9.1 - https://sourceforge.net/projects/wtl/files/WTL%209.1/WTL%209.1.5321%20Final/
 ATL Server includes/package - https://github.com/gabegundy/atlserver
 
-HydraIRC is written and developed using Visual Studio .NET 2008 and this is the
+HydraIRC is written and developed using Visual Studio .NET 2010 and this is the
 only supported build environment.  If you're using something else then you're on
 your own.
 
