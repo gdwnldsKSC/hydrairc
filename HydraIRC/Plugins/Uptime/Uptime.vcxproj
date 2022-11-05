@@ -73,6 +73,7 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\ATLServer\include;C:\WTL91\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -89,7 +90,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>
-</AdditionalOptions>
+      </AdditionalOptions>
       <AdditionalDependencies>pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)Uptime.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -128,7 +129,8 @@
       <AdditionalDependencies>pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)Uptime.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>Plugin.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(OutDir)$(ProjectName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
@@ -165,7 +167,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>
-</AdditionalOptions>
+      </AdditionalOptions>
       <AdditionalDependencies>pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)Uptime.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -207,7 +209,8 @@
       <AdditionalDependencies>pdh.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)Uptime.dll</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>Plugin.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>$(OutDir)$(ProjectName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
