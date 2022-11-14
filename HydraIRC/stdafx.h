@@ -32,11 +32,6 @@
 //      are changed infrequently
 //
 
-//#define NOT_READ_THE_LICENSE
-#ifdef NOT_READ_THE_LICENSE
-#error ** You must read LICENSE.TXT **
-#endif
-
 //////////////////////////////////////////////////////////////////////////
 //
 // Configuration Options!
@@ -107,6 +102,9 @@ extern CAppModule _Module;
 
 // atl should be downloaded and install from here http://www.codeplex.com/AtlServer/
 #include <atlrx.h>  // RegExps
+
+// Staging support for IPv6
+#include <ws2tcpip.h>
 
 /////////////////////////////////////////////////////////////////////////
 //

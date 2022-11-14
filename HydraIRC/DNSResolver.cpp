@@ -3,27 +3,17 @@
   HydraIRC
   Copyright (C) 2002-2006 Dominic Clifton aka Hydra
 
-  HydraIRC limited-use source license
-
-  1) You can:
-  1.1) Use the source to create improvements and bug-fixes to send to the
-       author to be incorporated in the main program.
-  1.2) Use it for review/educational purposes.
-
-  2) You can NOT:
-  2.1) Use the source to create derivative works. (That is, you can't release
-       your own version of HydraIRC with your changes in it)
-  2.2) Compile your own version and sell it.
-  2.3) Distribute unmodified, modified source or compiled versions of HydraIRC
-       without first obtaining permission from the author. (I want one place
-       for people to come to get HydraIRC from)
-  2.4) Use any of the code or other part of HydraIRC in anything other than 
-       HydraIRC.
-       
-  3) All code submitted to the project:
-  3.1) Must not be covered by any license that conflicts with this license 
-       (e.g. GPL code)
-  3.2) Will become the property of the author.
+  This program is free software: you can redistribute it and/or modify  
+  it under the terms of the GNU General Public License as published by  
+  the Free Software Foundation, version 3.
+ 
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+  General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License 
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -54,7 +44,39 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
   // resolve the address! :)
 
   struct hostent *hp;
-  hp = gethostbyname(pDNSRI->m_fqdn);
+  // Allocate full size of HP to prevent access violations and other nastyness
+  hp = (struct hostent *)calloc(1,sizeof(struct hostent));
+
+  struct addrinfo hints, *res;
+  // Init hints with zeros before usage
+  memset(&hints, 0, sizeof(hints));
+  // vector that will contain all returned resolution addresses
+  std::vector<in_addr*> in_addrs;
+  // simple error handling for getaddrinfo
+  int err = 0;
+
+  hints.ai_socktype = SOCK_STREAM;
+  hints.ai_flags = AI_CANONNAME;
+  // Change to AF_UNSPEC to perform dual stack lookups with IPv6 preferred, AF_INET for IPv4 only
+  hints.ai_family = AF_INET;
+
+  if ((err = getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res)) != 0) {
+	  sys_Printf(BIC_INFO, "error %d\n", err);
+  }
+
+  // prepare to build hostent struct from getaddrinfo data - take first address and put it into in_addrs
+  // using vector we can potentially rotate addresses in a future release from a single DNS resolution
+  for(addrinfo *p_addr = res; p_addr != NULL; p_addr = p_addr->ai_next) {
+      in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p_addr->ai_addr)->sin_addr);
+  }
+  in_addrs.push_back(NULL);
+
+  // Here we take the output of getaddrinfo and convert it to a hostent for existing code compatibility
+  hp->h_name = res->ai_canonname;
+  hp->h_aliases = NULL;
+  hp->h_addrtype = AF_INET;
+  hp->h_length = sizeof(in_addr);
+  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
 
   // Signal the calling window
   if (hp != NULL)
