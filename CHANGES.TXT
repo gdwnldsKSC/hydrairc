@@ -15,6 +15,10 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
 
+14/November/2022 - AM (0.3.169) - Experimental
+  * Changed DNS Resolver to use GetAddrInfo instead of gethostbyname to allow for future flexibility and IPv6 support
+    Current implementation takes results of getaddrinfo and converts it to the existing hostent struct type expected by other code
+
 13/November/2022 - PM (No version change) - Experimental
   gdwnldsKSC
   * Fix WinAmp plugin compiler warning by removing unused legacy code and defines.
