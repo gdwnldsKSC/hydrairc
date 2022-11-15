@@ -29,7 +29,7 @@ char *osversion()
    if (osvi.dwPlatformId == 2)
    {
          // Test for the specific product family.
-		 if ( osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0)
+	     if ( osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0 && osvi.wProductType == VER_NT_WORKSTATION)
 		 {
 			if(osvi.dwBuildNumber > 22000)
 				sprintf (buf+strlen(buf), "Microsoft Windows 11, ");
@@ -37,17 +37,35 @@ char *osversion()
 				sprintf (buf+strlen(buf), "Microsoft Windows 10, ");
 		 }
 
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 3 && osvi.wProductType == VER_NT_WORKSTATION)
+			sprintf (buf+strlen(buf), "Microsoft Windows 8.1, ");
+
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 3 && osvi.wProductType == VER_NT_SERVER)
+			sprintf (buf+strlen(buf), "Microsoft Windows Server 2012 R2, ");
+
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 2 && osvi.wProductType == VER_NT_WORKSTATION)
+			sprintf (buf+strlen(buf), "Microsoft Windows 8, ");
+
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 2 && osvi.wProductType == VER_NT_SERVER)
+			sprintf (buf+strlen(buf), "Microsoft Windows Server 2012, ");
+
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 && osvi.wProductType == VER_NT_WORKSTATION)
+			sprintf (buf+strlen(buf), "Microsoft Windows 7, ");
+
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 && osvi.wProductType == VER_NT_SERVER)
+			sprintf (buf+strlen(buf), "Microsoft Windows Server 2008 R2, ");
+
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 && osvi.wProductType == VER_NT_WORKSTATION)
+			sprintf (buf+strlen(buf), "Microsoft Windows Vista, ");
+
+		 if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 && osvi.wProductType == VER_NT_SERVER)
+			sprintf (buf+strlen(buf), "Microsoft Windows Server 2008, ");
+
          if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
             sprintf (buf+strlen(buf), "Microsoft Windows Server 2003 family, ");
 
          if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 1 )
             sprintf (buf+strlen(buf), "Microsoft Windows XP ");
-
-         if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 0 )
-            sprintf (buf+strlen(buf), "Microsoft Windows 2000 ");
-
-         if ( osvi.dwMajorVersion <= 4 )
-            sprintf (buf+strlen(buf), "Microsoft Windows NT ");
 
          // Test for specific product on Windows NT 4.0 SP6 and later.
          if( bOsVersionInfoEx )
@@ -55,25 +73,40 @@ char *osversion()
             // Test for the workstation type.
             if ( osvi.wProductType == VER_NT_WORKSTATION )
             {
+			   // NT4...... remove in future
                if( osvi.dwMajorVersion == 4 )
                   sprintf (buf+strlen(buf), "Workstation 4.0 " );
                else if( osvi.wSuiteMask & VER_SUITE_PERSONAL )
                   sprintf (buf+strlen(buf), "Home Edition " );
 			   else if( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
 				  sprintf (buf+strlen(buf), "Enterprise Edition " );
+			   // Windows XP
+
+			   // Windows 10
 			   else if (osvi.dwMajorVersion == 10 && osvi.dwBuildNumber < 22000 )
 			   {
 				  sprintf (buf+strlen(buf), "10 DETECTION");
+
+				  if ( osvi.dwBuildNumber >= 19536 && osvi.dwBuildNumber < 21327 )				  
+					sprintf (buf+strlen(buf), " (Active Development Branch) ");
 			   }
+
+			   // Windows 11
 			   else if( osvi.dwMajorVersion == 10 && osvi.dwBuildNumber >= 22000 )
 			   {
-				  if ( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
-					sprintf (buf+strlen(buf), "Enterprise Edition");
+				  if ( (osvi.wSuiteMask & PRODUCT_PROFESSIONAL) != 0 )
+					sprintf (buf+strlen(buf), "Professional Edition ");
+				  else if ( (osvi.wSuiteMask & PRODUCT_ENTERPRISE) != 0 )
+				    sprintf (buf+strlen(buf), "Enterprise Edition" );
 				  else
-				    sprintf (buf+strlen(buf), "11 DETECTION");
+				    sprintf (buf+strlen(buf), "11 EDITION NOT DETECTED " );
+
+				  if ( osvi.dwBuildNumber > 22621 )
+					sprintf (buf+strlen(buf), " (Active Development Branch) ");
 			   }
+
 			   else
-                  sprintf (buf+strlen(buf), "Professional" );
+                  sprintf (buf+strlen(buf), "Edition not detected " );
 			}
             
             // Test for the server type.
@@ -101,13 +134,9 @@ char *osversion()
                      sprintf (buf+strlen(buf), "Server " );
                }
 
-               else  // Windows NT 4.0 
-               {
-                  if( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
-                     sprintf (buf+strlen(buf), "Server 4.0, Enterprise Edition " );
-                  else
-                     sprintf (buf+strlen(buf), "Server 4.0 " );
-               }
+               else  // Catchall 
+                  sprintf (buf+strlen(buf), "Server 4.0, Enterprise Edition " );
+               
             }
          }
 

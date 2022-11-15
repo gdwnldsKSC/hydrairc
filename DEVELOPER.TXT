@@ -76,9 +76,10 @@ Build Procedure:
 Submitting Patches
 ==================
 
-Pull requests via github: https://github.com/HydraIRC/hydrairc
+Patches can be submitted via git pull requests to Hydra's respoitory at: https://github.com/HydraIRC/hydrairc
 
-Development branch of gdwnldsKSC: https://github.com/gdwnldsKSC/hydrairc
+Dev branches for gdwnldsKSC's experimental changes and future submissions 
+is available at: https://github.com/gdwnldsKSC/hydrairc/
 
 Working on the source
 =====================

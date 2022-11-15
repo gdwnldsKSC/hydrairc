@@ -9,7 +9,7 @@ Please use the issue tracker to report bugs.
 ## Contributing
 
 If you want to become a member of the HydraIRC github organization then please make contact, perhaps first by submitting
-a pull request or via the HydraIRC channel on FreeNode IRC - irc://freenode.net/#hydrairc
+a pull request.
 
 Maintainers for the project are sought as the author has very little free time.
 
@@ -23,10 +23,10 @@ The main reasons for the project not receiving much attention until now (October
 * It still does everything the author needs 10 years after it was created.
 * The original author has learnt much about software development doesn't like working the codebase.
 
-
-September 2022: 
-
-Updates to libXML and Visual Studio 2008 build compatibility/instructions provided by gdwnldsKSC
+## New in 2022!
+ * Many updates and changes, future fixes, core library updates, cleanup, beginning IPv6 work, etc
+   See CHANGES.TXT for details!
+   - gdwnldsKSC
 
 ## Code
 
@@ -41,4 +41,3 @@ HydraIRC uses WTL, WTL has not seen much love from Microsoft in recent years.
 
 The license for the source is now GPL v3 - many of the source code files still refer to the old license, these references
 are outdated as of 1st October 2014 and will be replaced with the GPL header.
-
