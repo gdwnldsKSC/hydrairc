@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{08BC321F-3476-43F9-9989-FD9B1DA2A079}</ProjectGuid>
+    <RootNamespace>libxml2</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\libxml2\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\libxml2\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\libxml2\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\libxml2\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">BuildCompile</CustomBuildAfterTargets>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">BuildCompile</CustomBuildAfterTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CustomBuildStep>
+      <Message>Creating static library libxml2_a.lib...</Message>
+      <Command>lib /nologo /out:libxml2\libxml2_a.lib libxml2\*.obj
+</Command>
+      <Outputs>libxml2\libxml2_a.lib</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\libxml2/libxml2.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL;LIBXML_EXPR_ENABLED</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\libxml2/libxml2.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\libxml2/</AssemblerListingLocation>
+      <ObjectFileName>.\libxml2/</ObjectFileName>
+      <ProgramDataBaseFileName>.\libxml2/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <ShowIncludes>false</ShowIncludes>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;odbc32.lib;odbccp32.lib;ws2_32.lib</AdditionalDependencies>
+      <OutputFile>.\libxml2/libxml2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\libxml2.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\libxml2/libxml2.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\libxml2/libxml2.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CustomBuildStep>
+      <Message>Creating static library libxml2_a.lib...</Message>
+      <Command>lib /nologo /out:libxml2\libxml2_a.lib libxml2\*.obj
+</Command>
+      <Outputs>libxml2\libxml2_a.lib;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\libxml2/libxml2.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL;LIBXML_EXPR_ENABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\libxml2/libxml2.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\libxml2/</AssemblerListingLocation>
+      <ObjectFileName>.\libxml2/</ObjectFileName>
+      <ProgramDataBaseFileName>.\libxml2/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <ShowIncludes>false</ShowIncludes>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:X64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;odbc32.lib;odbccp32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\libxml2/libxml2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\libxml2.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\libxml2/libxml2.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\libxml2/libxml2.lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CustomBuildStep>
+      <Message>Creating static library libxml2_a.lib...</Message>
+      <Command>lib /nologo /out:libxml2\libxml2_a.lib libxml2\*.obj
+</Command>
+      <Outputs>libxml2\libxml2_a.lib</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\libxml2/libxml2.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL;LIBXML_EXPR_ENABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\libxml2/libxml2.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\libxml2/</AssemblerListingLocation>
+      <ObjectFileName>.\libxml2/</ObjectFileName>
+      <ProgramDataBaseFileName>.\libxml2/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;odbc32.lib;odbccp32.lib;ws2_32.lib</AdditionalDependencies>
+      <OutputFile>.\libxml2/libxml2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\libxml2.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\libxml2/libxml2.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\libxml2/libxml2.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CustomBuildStep>
+      <Message>Creating static library libxml2_a.lib...</Message>
+      <Command>lib /nologo /out:libxml2\libxml2_a.lib libxml2\*.obj
+</Command>
+      <Outputs>libxml2\libxml2_a.lib;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\libxml2/libxml2.tlb</TypeLibraryName>
+    </Midl>
+    <ClCompile>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBXML_STATIC;LIBXML_STATIC_FOR_DLL;LIBXML_EXPR_ENABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\libxml2/libxml2.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\libxml2/</AssemblerListingLocation>
+      <ObjectFileName>.\libxml2/</ObjectFileName>
+      <ProgramDataBaseFileName>.\libxml2/</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:X64 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>wsock32.lib;odbc32.lib;odbccp32.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\libxml2/libxml2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\libxml2.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\libxml2/libxml2.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\libxml2/libxml2.lib</ImportLibrary>
+      <TargetMachine>NotSet</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\buf.c" />
+    <ClCompile Include="..\c14n.c" />
+    <ClCompile Include="..\catalog.c" />
+    <ClCompile Include="..\chvalid.c" />
+    <ClCompile Include="..\debugXML.c" />
+    <ClCompile Include="..\dict.c" />
+    <ClCompile Include="..\encoding.c" />
+    <ClCompile Include="..\entities.c" />
+    <ClCompile Include="..\error.c" />
+    <ClCompile Include="..\globals.c" />
+    <ClCompile Include="..\hash.c" />
+    <ClCompile Include="..\HTMLparser.c" />
+    <ClCompile Include="..\HTMLtree.c" />
+    <ClCompile Include="..\legacy.c" />
+    <ClCompile Include="..\list.c" />
+    <ClCompile Include="..\nanoftp.c" />
+    <ClCompile Include="..\nanohttp.c" />
+    <ClCompile Include="..\parser.c" />
+    <ClCompile Include="..\parserInternals.c" />
+    <ClCompile Include="..\pattern.c" />
+    <ClCompile Include="..\relaxng.c" />
+    <ClCompile Include="..\SAX.c" />
+    <ClCompile Include="..\SAX2.c" />
+    <ClCompile Include="..\schematron.c" />
+    <ClCompile Include="..\threads.c" />
+    <ClCompile Include="..\tree.c" />
+    <ClCompile Include="..\uri.c" />
+    <ClCompile Include="..\valid.c" />
+    <ClCompile Include="..\xinclude.c" />
+    <ClCompile Include="..\xlink.c" />
+    <ClCompile Include="..\xmlIO.c" />
+    <ClCompile Include="..\xmlmemory.c" />
+    <ClCompile Include="..\xmlmodule.c" />
+    <ClCompile Include="..\xmlreader.c" />
+    <ClCompile Include="..\xmlregexp.c" />
+    <ClCompile Include="..\xmlsave.c" />
+    <ClCompile Include="..\xmlschemas.c" />
+    <ClCompile Include="..\xmlschemastypes.c" />
+    <ClCompile Include="..\xmlstring.c" />
+    <ClCompile Include="..\xmlunicode.c" />
+    <ClCompile Include="..\xmlwriter.c" />
+    <ClCompile Include="..\xpath.c" />
+    <ClCompile Include="..\xpointer.c" />
+    <ClCompile Include="..\xzlib.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libxml2.def" />
+    <CustomBuild Include="libxml2.def.src">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cl /I".." /I"..\include" /nologo /EP "%(FullPath)" &gt; libxml2.def
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../include/libxml/xmlversion.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">libxml2.def;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl /I".." /I"..\include" /nologo /EP "%(FullPath)" &gt; libxml2.def
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../include/libxml/xmlversion.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libxml2.def;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /I".." /I"..\include" /nologo /EP "%(FullPath)" &gt; libxml2.def
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../include/libxml/xmlversion.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">libxml2.def;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl /I".." /I"..\include" /nologo /EP "%(FullPath)" &gt; libxml2.def
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../include/libxml/xmlversion.h;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libxml2.def;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\libxml\c14n.h" />
+    <ClInclude Include="..\include\libxml\catalog.h" />
+    <ClInclude Include="..\include\libxml\debugXML.h" />
+    <ClInclude Include="..\include\libxml\dict.h" />
+    <ClInclude Include="..\include\libxml\DOCBparser.h" />
+    <ClInclude Include="..\include\libxml\encoding.h" />
+    <ClInclude Include="..\include\libxml\entities.h" />
+    <ClInclude Include="..\include\libxml\globals.h" />
+    <ClInclude Include="..\include\libxml\hash.h" />
+    <ClInclude Include="..\include\libxml\HTMLparser.h" />
+    <ClInclude Include="..\include\libxml\HTMLtree.h" />
+    <ClInclude Include="..\libxml.h" />
+    <ClInclude Include="..\include\libxml\list.h" />
+    <ClInclude Include="..\include\libxml\nanoftp.h" />
+    <ClInclude Include="..\include\libxml\nanohttp.h" />
+    <ClInclude Include="..\include\libxml\parser.h" />
+    <ClInclude Include="..\include\libxml\parserInternals.h" />
+    <ClInclude Include="..\include\libxml\relaxng.h" />
+    <ClInclude Include="..\include\libxml\SAX.h" />
+    <ClInclude Include="..\include\libxml\threads.h" />
+    <ClInclude Include="..\include\libxml\tree.h" />
+    <ClInclude Include="..\include\libxml\uri.h" />
+    <ClInclude Include="..\include\libxml\valid.h" />
+    <ClInclude Include="..\include\win32config.h" />
+    <ClInclude Include="..\include\libxml\xinclude.h" />
+    <ClInclude Include="..\include\libxml\xlink.h" />
+    <ClInclude Include="..\include\libxml\xmlerror.h" />
+    <ClInclude Include="..\include\libxml\xmlexports.h" />
+    <ClInclude Include="..\include\libxml\xmlIO.h" />
+    <ClInclude Include="..\include\libxml\xmlmemory.h" />
+    <ClInclude Include="..\include\libxml\xmlversion.h" />
+    <ClInclude Include="..\include\libxml\xpath.h" />
+    <ClInclude Include="..\include\libxml\xpathInternals.h" />
+    <ClInclude Include="..\include\libxml\xpointer.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
