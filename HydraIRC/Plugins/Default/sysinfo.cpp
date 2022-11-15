@@ -26,12 +26,17 @@ char *osversion()
          return _strdup(buf);
    }
 
-   switch (osvi.dwPlatformId)
+   if (osvi.dwPlatformId == 2)
    {
-      // Test for the Windows NT product family.
-      case VER_PLATFORM_WIN32_NT:
-
          // Test for the specific product family.
+		 if ( osvi.dwMajorVersion == 10 && osvi.dwMinorVersion == 0)
+		 {
+			if(osvi.dwBuildNumber > 22000)
+				sprintf (buf+strlen(buf), "Microsoft Windows 11, ");
+			else
+				sprintf (buf+strlen(buf), "Microsoft Windows 10, ");
+		 }
+
          if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
             sprintf (buf+strlen(buf), "Microsoft Windows Server 2003 family, ");
 
@@ -54,9 +59,22 @@ char *osversion()
                   sprintf (buf+strlen(buf), "Workstation 4.0 " );
                else if( osvi.wSuiteMask & VER_SUITE_PERSONAL )
                   sprintf (buf+strlen(buf), "Home Edition " );
-               else
-                  sprintf (buf+strlen(buf), "Professional " );
-            }
+			   else if( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
+				  sprintf (buf+strlen(buf), "Enterprise Edition " );
+			   else if (osvi.dwMajorVersion == 10 && osvi.dwBuildNumber < 22000 )
+			   {
+				  sprintf (buf+strlen(buf), "10 DETECTION");
+			   }
+			   else if( osvi.dwMajorVersion == 10 && osvi.dwBuildNumber >= 22000 )
+			   {
+				  if ( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
+					sprintf (buf+strlen(buf), "Enterprise Edition");
+				  else
+				    sprintf (buf+strlen(buf), "11 DETECTION");
+			   }
+			   else
+                  sprintf (buf+strlen(buf), "Professional" );
+			}
             
             // Test for the server type.
             else if ( osvi.wProductType == VER_NT_SERVER )
@@ -92,96 +110,9 @@ char *osversion()
                }
             }
          }
-         else  // Test for specific product on Windows NT 4.0 SP5 and earlier
-         {
-            HKEY hKey;
-            char szProductType[BUFSIZE];
-            DWORD dwBufLen=BUFSIZE;
-            LONG lRet;
 
-            lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
-               "SYSTEM\\CurrentControlSet\\Control\\ProductOptions",
-               0, KEY_QUERY_VALUE, &hKey );
-            if( lRet != ERROR_SUCCESS )
-               return _strdup(buf);
-
-            lRet = RegQueryValueEx( hKey, "ProductType", NULL, NULL,
-               (LPBYTE) szProductType, &dwBufLen);
-            if( (lRet != ERROR_SUCCESS) || (dwBufLen > BUFSIZE) )
-               return _strdup(buf);
-
-            RegCloseKey( hKey );
-
-            if ( lstrcmpi( "WINNT", szProductType) == 0 )
-               sprintf (buf+strlen(buf), "Workstation " );
-            if ( lstrcmpi( "LANMANNT", szProductType) == 0 )
-               sprintf (buf+strlen(buf), "Server " );
-            if ( lstrcmpi( "SERVERNT", szProductType) == 0 )
-               sprintf (buf+strlen(buf), "Advanced Server " );
-
-            printf( "%d.%d ", osvi.dwMajorVersion, osvi.dwMinorVersion );
-         }
-
-      // Display service pack (if any) and build number.
-
-         if( osvi.dwMajorVersion == 4 && 
-             lstrcmpi( osvi.szCSDVersion, "Service Pack 6" ) == 0 )
-         {
-            HKEY hKey;
-            LONG lRet;
-
-            // Test for SP6 versus SP6a.
-            lRet = RegOpenKeyEx( HKEY_LOCAL_MACHINE,
-               "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009",
-               0, KEY_QUERY_VALUE, &hKey );
-            if( lRet == ERROR_SUCCESS )
-               sprintf (buf+strlen(buf), "Service Pack 6a (Build %d)", osvi.dwBuildNumber & 0xFFFF );         
-            else // Windows NT 4.0 prior to SP6a
-            {
-               sprintf (buf+strlen(buf), "%s (Build %d)",
-                  osvi.szCSDVersion,
-                  osvi.dwBuildNumber & 0xFFFF);
-            }
-
-            RegCloseKey( hKey );
-         }
-         else // Windows NT 3.51 and earlier or Windows 2000 and later
-         {
-            sprintf (buf+strlen(buf), "%s (Build %d)",
-               osvi.szCSDVersion,
-               osvi.dwBuildNumber & 0xFFFF);
-         }
-
-
-         break;
-
-      // Test for the Windows 95 product family.
-      case VER_PLATFORM_WIN32_WINDOWS:
-
-         if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 0)
-         {
-             sprintf (buf+strlen(buf), "Microsoft Windows 95 ");
-             if ( osvi.szCSDVersion[1] == 'C' || osvi.szCSDVersion[1] == 'B' )
-                sprintf (buf+strlen(buf), "OSR2 " );
-         } 
-
-         if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 10)
-         {
-             sprintf (buf+strlen(buf), "Microsoft Windows 98 ");
-             if ( osvi.szCSDVersion[1] == 'A' )
-                sprintf (buf+strlen(buf), "SE " );
-         } 
-
-         if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 90)
-         {
-             sprintf (buf+strlen(buf), "Microsoft Windows Millennium Edition");
-         } 
-         break;
-
-      case VER_PLATFORM_WIN32s:
-
-         sprintf (buf+strlen(buf), "Microsoft Win32s");
-         break;
+         // Display service pack (if any) and build number.
+         sprintf (buf+strlen(buf), "%s (Build %d)", osvi.szCSDVersion, osvi.dwBuildNumber & 0xFFFF);
    }
    return _strdup(buf);
 }
@@ -214,8 +145,9 @@ char *cpuinfo()
 char *meminfo()
 {
   char buf[256];
-  MEMORYSTATUS memstatus;
-  GlobalMemoryStatus(&memstatus);
-  sprintf(buf, "Memory: %d/%d MB", (memstatus.dwTotalPhys-memstatus.dwAvailPhys)/(1024*1024), memstatus.dwTotalPhys/(1024*1024));
+  MEMORYSTATUSEX memstatus;
+  memstatus.dwLength = sizeof(memstatus);
+  GlobalMemoryStatusEx(&memstatus);
+  sprintf(buf, "Memory: %llu/%llu MB", memstatus.ullAvailPhys/(1024*1024), memstatus.ullTotalPhys/(1024*1024));
   return _strdup(buf);
 }

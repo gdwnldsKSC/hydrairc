@@ -15,6 +15,11 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
 
+15/November/2022 - PM (0.3.171) - Experimental
+  gdwnldsKSC
+  * Fix SysInfo plugin to detect/report Windows 10 and 11 and accurately report large
+    memory scenarios (Tested on 192GB and 64GB).
+
 15/November/2022 - AM (0.3.170) - Experimental
   gdwnldsKSC
   * Upgraded project to Visual Studio 2010
