@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -52,7 +50,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "Q",            ID_APP_EXIT,            VIRTKEY, CONTROL, NOINVERT
     "S",            ID_CHANNEL_SHOWSERVER,  VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -92,8 +90,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,3,169,0
- PRODUCTVERSION 0,3,169,0
+ FILEVERSION 0,3,170,0
+ PRODUCTVERSION 0,3,170,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -111,12 +109,12 @@ BEGIN
             VALUE "Comments", "http://www.HydraIRC.com"
             VALUE "CompanyName", "Hydra Productions"
             VALUE "FileDescription", "HydraIRC"
-            VALUE "FileVersion", "0, 3, 169, 0"
+            VALUE "FileVersion", "0.3.170.0"
             VALUE "InternalName", "HydraIRC"
             VALUE "LegalCopyright", "Dominic Clifton - Copyright 2002-2008"
             VALUE "OriginalFilename", "HydraIRC.exe"
             VALUE "ProductName", "HydraIRC"
-            VALUE "ProductVersion", "0.3.169.0"
+            VALUE "ProductVersion", "0.3.170.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -131,7 +129,7 @@ END
 // Menu
 //
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
@@ -227,7 +225,7 @@ BEGIN
     END
 END
 
-IDR_TASKBAR MENU 
+IDR_TASKBAR MENU
 BEGIN
     POPUP "Taskbar"
     BEGIN
@@ -235,7 +233,7 @@ BEGIN
     END
 END
 
-IDR_CONNECT_SERVERCONTEXT MENU 
+IDR_CONNECT_SERVERCONTEXT MENU
 BEGIN
     POPUP "Server"
     BEGIN
@@ -253,7 +251,7 @@ BEGIN
     END
 END
 
-IDR_OUTPUT_CONTEXT MENU 
+IDR_OUTPUT_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -262,7 +260,7 @@ BEGIN
     END
 END
 
-IDR_CHANNELMONITOR_CONTEXT MENU 
+IDR_CHANNELMONITOR_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -272,7 +270,7 @@ BEGIN
     END
 END
 
-IDR_SERVERMONITOR_CONTEXT MENU 
+IDR_SERVERMONITOR_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -282,7 +280,7 @@ BEGIN
     END
 END
 
-IDR_CHANNEL_CONTEXT MENU 
+IDR_CHANNEL_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -306,7 +304,7 @@ BEGIN
     END
 END
 
-IDR_SERVER_CONTEXT MENU 
+IDR_SERVER_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -320,7 +318,7 @@ BEGIN
     END
 END
 
-IDR_USERLIST_CONTEXT MENU 
+IDR_USERLIST_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -363,7 +361,7 @@ BEGIN
     END
 END
 
-IDR_QUERY_CONTEXT MENU 
+IDR_QUERY_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -811,7 +809,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_PREFS, DIALOG
     BEGIN
@@ -867,7 +865,7 @@ IDB_TRANSFER            BITMAP                  "res\\transfer.bmp"
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "HydraIRC"
     ID_CHANNEL_PROPERTIES   "Show channel properties"
@@ -877,7 +875,7 @@ BEGIN
     ID_EDIT_COPYBUFFER      "Copy the whole buffer to the clipboard\nCopy Buffer"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_CHANNEL_MONITOR      "Start or stop channel monitoring\nStart Stop Monitoring"
     IDR_TASKBAR             "HydraIRC"
@@ -886,13 +884,13 @@ BEGIN
     IDC_CHILDFRAME_COPYBUFFER "Copy the whole buffer to the clipboard"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_CHILDFRAME_VIEWLOGFILE "View the log file using the log file viewer"
     ID_OPTIONS_LOGGING      "Toggle File Logging\nToggle File Logging"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_CONNECT         "Connect\nConnect"
     ID_FILE_DISCONNECT      "Disconnect\nDisconnect"
@@ -909,7 +907,7 @@ BEGIN
                             "Minimize all child windows\nHide all child windows"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OPTIONS_TIMESTAMPS   "Toggle timestamps\nToggle timestamps"
     ID_OPTIONS_AUDIOMUTE    "Toggle Audio Mute\nToggle Audio Mute"
@@ -923,25 +921,25 @@ BEGIN
     ID_OPTIONS_TOGGLEINFO   "Toggle Info\nToggle Info View for this window"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_HELP_HYDRAIRCONTHEWEB "HydraIRC home page\nHydraIRC home page"
     ID_VIEW_SERVERMONITOR   "Toggle the server monitor window\nToggle server monitor window"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
     ID_APP_EXIT             "Quit the application\nExit"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
     ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
     ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
@@ -951,7 +949,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
     ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
@@ -961,13 +959,13 @@ BEGIN
     ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ATL_IDS_SCSIZE          "Change the window size"
     ATL_IDS_SCMOVE          "Change the window position"
@@ -978,30 +976,30 @@ BEGIN
     ATL_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ATL_IDS_SCRESTORE       "Restore the window to normal size"
     ATL_IDS_SCTASKLIST      "Activate Task List"
     ATL_IDS_MDICHILD        "Activate this window"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ATL_IDS_IDLEMESSAGE     "Ready"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ATL_IDS_MRU_FILE        "Open this document"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "New Server Window\nNew Server"
     ID_FILE_CLOSE           "Close Window\nClose Window"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_HELP_DOCUMENTATION   "Documentation"
     ID_HELP_REPORTABUG      "Report bugs here!"
@@ -1009,30 +1007,28 @@ BEGIN
     ID_VIEW_EVENTLOG        "Show or hide the event log\nToggle Event log"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_OPTIONS_TOGGLEHEADER "Toggle Header\nToggle Header for this window"
 END
 
-#endif    // English (U.S.) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.K.) resources
+// English (United Kingdom) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-IDR_DCCCHAT_CONTEXT MENU 
+IDR_DCCCHAT_CONTEXT MENU
 BEGIN
     POPUP "Context"
     BEGIN
@@ -1044,7 +1040,7 @@ BEGIN
     END
 END
 
-#endif    // English (U.K.) resources
+#endif    // English (United Kingdom) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

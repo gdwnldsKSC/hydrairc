@@ -7,6 +7,7 @@ HydraIRC/libs/libxml2-dev/*
 *.ipch
 *.opensdf
 *.sdf
+*.aps
 *.vcxproj.user
 HydraIRC.ncb
 HydraIRC.suo
