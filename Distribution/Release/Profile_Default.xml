@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
-<HydraIRCProfile name="Default">
-  <identities/>
+<HydraIRCProfile name="Default" hydraircversion="v0.3.172.1">
+  <identities>
+    <identity name="test" id="1" realname="test" username="test" identdos="test" identdusername="test">
+      <nick name="test"/>
+    </identity>
+  </identities>
   <buddygroups>
     <group name="Special People" id="100" network="10362">
       <buddy name="Hydra"/>
