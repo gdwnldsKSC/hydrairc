@@ -15,6 +15,11 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
 
+3/December/2022 - PM (0.3.172.2) - Experimental
+  gdwnldsKSC
+  * Upgraded project to Visual Studio 2012
+  + Cleaned up upgrade compiler warnings
+
 2/November/2022 - PM (0.3.172.1) - Experimental
   gdwnldsKSC
   * Upgraded project to Visual Studio 2010

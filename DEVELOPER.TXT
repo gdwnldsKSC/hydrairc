@@ -5,10 +5,10 @@ HydraIRC Developer Notes
 
 
 HydraIRC is written using Visual Studio .NET 2003.
-The code has been ported to Visual Studio .NET 2010 and support for Visual Studio .NET 2003,
-Visual Studio 2005, and Visual Studio 2008 has been dropped.
+The code has been ported to Visual Studio .NET 2012 and support for prior versions
+has been dropped.
 
-Visual Studio.NET 2010 is REQUIRED to build HydraIRC.
+Visual Studio.NET 2012 is REQUIRED to build HydraIRC.
 
 If you want to start helping out, check out the TODO.TXT and try and fix some bugs,
 then start with some of the simpler things until you're used to the codebase.
@@ -29,7 +29,7 @@ your own.
 
 -----------------------------------
 
-VISUAL STUDIO 2010 NOTES: 
+VISUAL STUDIO 2012 NOTES: 
 
 The ATL Server package has become almost impossible to find as a regular download, 
 but it can now be obtained at https://github.com/gabegundy/atlserver

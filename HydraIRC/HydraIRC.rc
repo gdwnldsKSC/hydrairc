@@ -7,6 +7,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
+#define _USING_V110_SDK71_ 1
 #include "atlres.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -32,6 +33,7 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
+    "#define _USING_V110_SDK71_ 1\r\n"
     "#include ""atlres.h""\r\n"
     "\0"
 END
@@ -90,8 +92,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,3,172,1
- PRODUCTVERSION 0,3,172,1
+ FILEVERSION 0,3,172,2
+ PRODUCTVERSION 0,3,172,2
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -109,12 +111,12 @@ BEGIN
             VALUE "Comments", "https://github.com/HydraIRC/hydrairc"
             VALUE "CompanyName", "Hydra Productions"
             VALUE "FileDescription", "HydraIRC"
-            VALUE "FileVersion", "0.3.172.1"
+            VALUE "FileVersion", "0.3.172.2"
             VALUE "InternalName", "HydraIRC"
             VALUE "LegalCopyright", "Dominic Clifton - Copyright 2002-2006"
             VALUE "OriginalFilename", "HydraIRC.exe"
             VALUE "ProductName", "HydraIRC"
-            VALUE "ProductVersion", "0.3.172.1"
+            VALUE "ProductVersion", "0.3.172.2"
         END
     END
     BLOCK "VarFileInfo"

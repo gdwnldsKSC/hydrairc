@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<HydraIRCProfile name="Default" hydraircversion="v0.3.172.1">
+<HydraIRCProfile name="Default" hydraircversion="v0.3.172.2">
   <identities>
     <identity name="test" id="1" realname="test" username="test" identdos="test" identdusername="test">
       <nick name="test"/>
