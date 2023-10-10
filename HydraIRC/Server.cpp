@@ -1,29 +1,19 @@
 /*
 
   HydraIRC
-  Copyright (C) 2002-2006 Dominic Clifton aka Hydra
+  Copyright (C) 2002-2023 Dominic Clifton aka Hydra
 
-  HydraIRC limited-use source license
-
-  1) You can:
-  1.1) Use the source to create improvements and bug-fixes to send to the
-       author to be incorporated in the main program.
-  1.2) Use it for review/educational purposes.
-
-  2) You can NOT:
-  2.1) Use the source to create derivative works. (That is, you can't release
-       your own version of HydraIRC with your changes in it)
-  2.2) Compile your own version and sell it.
-  2.3) Distribute unmodified, modified source or compiled versions of HydraIRC
-       without first obtaining permission from the author. (I want one place
-       for people to come to get HydraIRC from)
-  2.4) Use any of the code or other part of HydraIRC in anything other than 
-       HydraIRC.
-       
-  3) All code submitted to the project:
-  3.1) Must not be covered by any license that conflicts with this license 
-       (e.g. GPL code)
-  3.2) Will become the property of the author.
+  This program is free software: you can redistribute it and/or modify  
+  it under the terms of the GNU General Public License as published by  
+  the Free Software Foundation, version 3.
+ 
+  This program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
+  General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License 
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -78,41 +68,41 @@ BOOL UpdateServerDetails(IRCServerDetails *pServerDetails)
 
 char *g_QuitMessages[] = 
 {
-  //"WOW! This IRC Client ownz! \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- \\o/",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- Get \002hot chicks\002 here!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Chicks dig it",
-  //"The IRC Client of the Gods! -> http://www.hydrairc.com <- \002HydraIRC\002",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- irc client ownage!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- *\002I\002* use it, so it must be good!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Nine out of ten l33t h4x0rz prefer it",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- s0 d4Mn l33t |t'z 5c4rY!",
-  //"\002HydraIRC\002 rocks! -> http://www.hydrairc.com <-", 
-  "I love my \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  //"Like VS.net's GUI?  Then try \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <-",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- The dawn of a new IRC era",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- IRC has never been so good",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- The professional IRC Client :D",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- Try something fresh",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- Leading Edge IRC",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- The future of IRC",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- State of the art IRC",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- IRC with a difference",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Go on, try it!",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- 100,000+ downloads can't be wrong",
-  //"\002HydraIRC\002 -> http://www.hydrairc.com <- IRC for those that like to be different",
-  "Want to be different? Try \002HydraIRC\002 -> http://www.hydrairc.com <-",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- The alternative IRC client",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Like it?  Visit #hydrairc on Freenode",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Would you like to know more?",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Organize your IRC",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Now with extra fish!",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Wibbly Wobbly IRC",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- It'll be on slashdot one day...",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- In tests, 0x09 out of 0x0A l33t h4x0rz prefer it :)",
-  "\002HydraIRC\002 -> http://www.hydrairc.com <- Po-ta-to, boil em, mash em, stick em in a stew.",
-  "Try \002HydraIRC\002 -> http://www.hydrairc.com <-" 
+  //"WOW! This IRC Client ownz! \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- \\o/",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Get \002hot chicks\002 here!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Chicks dig it",
+  //"The IRC Client of the Gods! -> https://github.com/HydraIRC/hydrairc <- \002HydraIRC\002",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- irc client ownage!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- *\002I\002* use it, so it must be good!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Nine out of ten l33t h4x0rz prefer it",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- s0 d4Mn l33t |t'z 5c4rY!",
+  //"\002HydraIRC\002 rocks! -> https://github.com/HydraIRC/hydrairc <-", 
+  "I love my \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  //"Like VS.net's GUI?  Then try \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The dawn of a new IRC era",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- IRC has never been so good",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The professional IRC Client :D",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Try something fresh",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Leading Edge IRC",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The future of IRC",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- State of the art IRC",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- IRC with a difference",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Go on, try it!",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- 100,000+ downloads can't be wrong",
+  //"\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- IRC for those that like to be different",
+  "Want to be different? Try \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- The alternative IRC client",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Like it?  Visit #hydrairc on Freenode",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Would you like to know more?",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Organize your IRC",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Now with extra fish!",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Wibbly Wobbly IRC",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- It'll be on slashdot one day...",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- In tests, 0x09 out of 0x0A l33t h4x0rz prefer it :)",
+  "\002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <- Po-ta-to, boil em, mash em, stick em in a stew.",
+  "Try \002HydraIRC\002 -> https://github.com/HydraIRC/hydrairc <-" 
 };
 
 char *g_ServerStatusNames[4] = 
@@ -1985,6 +1975,9 @@ void IRCServer::Parse( char *processstr )
         {
           username = a;
           topictime = b;
+		  if (topictime[0] == ':') {
+              topictime++;
+          }
           time_t l = (time_t)atol(topictime); // FIXME - no check for null string
           t = localtime(&l);
         }
@@ -2023,23 +2016,31 @@ void IRCServer::Parse( char *processstr )
 		  {
 			  char *channelname;
 			  channelname = strtok(rest, " ");
-			  //username = UseEmptyString(strtok(NULL, " "));
+			  char *timeStr = UseEmptyString(strtok(NULL, ""));
+			  if (!timeStr) {
+				    sys_Printf(BIC_ERROR, "ERROR: Failed to parse creation time for channel %s\n", channelname);
+				    break;
+			  }
+				// ircd protocol fix for servers not putting space after
+			   if (timeStr[0] == ':') {
+			       timeStr++;
+			   }
 
-			  time_t l = (time_t)atol(UseEmptyString(strtok(NULL, ""))); // FIXME - no check for null string
+			  time_t l = (time_t)atol(timeStr);
 			  tm *t = localtime(&l);
-
 			  m_Variables[VID_CHANNEL] = channelname;
 			  m_Variables[VID_PARAM1] = channelname;
-        m_Variables[VID_PARAM2] = t ? stripcrlf(asctime(t)) : "unknown";
+              m_Variables[VID_PARAM2] = t ? stripcrlf(asctime(t)) : "unknown";
 
-        IRCChannel *pChannel = FindChannel(channelname);
-        if (pChannel)
-        {
-          pChannel->OutputFormatter(BIC_TOPIC,num);
-        }
-        else
-          sys_Printf(BIC_ERROR,"ERROR: Received channel information for a channel that we've not joined (%s)\n",channelname);
-      }
+              IRCChannel *pChannel = FindChannel(channelname);
+
+			  if (pChannel)
+              {
+                  pChannel->OutputFormatter(BIC_TOPIC,num);
+              }
+              else
+                  sys_Printf(BIC_ERROR,"ERROR: Received channel information for a channel that we've not joined (%s)\n",channelname);
+           }
       break;
 
     case RPL_NAMREPLY:
@@ -2116,6 +2117,10 @@ void IRCServer::Parse( char *processstr )
         char *channelmode;
         channelname = strtok(rest, " ");
         channelmode = UseEmptyString(strtok(NULL,""));
+
+		if (channelmode && channelmode[0] == ':') {
+			channelmode++;
+        }
 
         m_Variables[VID_CHANNEL] = channelname;
         m_Variables[VID_CHANNELMODE] = channelmode;
@@ -2687,6 +2692,12 @@ void IRCServer::Parse( char *processstr )
       m_Variables[VID_PARAM1] = to;
       m_Variables[VID_PARAM2] = tmpnick;
       m_Variables[VID_PARAM3] = UseEmptyString(rest);
+
+	  char *colonPos = strchr(rest, ':');
+      if (colonPos) {
+          memmove(colonPos, colonPos + 1, strlen(colonPos));
+      }
+
       if (ischannelstartchar(to[0]))
       {
         IRCChannel *pChannel = FindChannel(to);
