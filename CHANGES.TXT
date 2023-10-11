@@ -15,6 +15,17 @@ Key:
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
   
+11/October/2023 - AM (0.3.170)  
+  * Upgraded project to Visual Studio 2010
+  * Now using Windows SDK 7.0A as included with VS 2010
+  + fix to dockablewindows headers due to auto_ptr deprecation/behavior change - use std::shared_ptr
+    instead to resolve null dereference in debug builds - VS 2010 auto_ptr can't be accessed that way
+	and is deprecated in C++ standards - causes null address access violation. 
+  * Application manifest added so that windows API on newer versions than the original release of 
+    Windows 8 don't report falsified compatibility and OS data. Has no effect on lower versions.
+  + Updated _WIN32_WINNT ver and associated variables to allow compilation on 2010/7.0 - VC2010 static
+    linked and redistributable runtime require XPSP2, so that is now the minimum supported version.
+  
 9/October/2023 - PM (0.3.169)
   gdwnldsKSC
   + Resolved IRC Protocol issue from github issue https://github.com/HydraIRC/hydrairc/issues/17
@@ -26,7 +37,7 @@ Key:
    
 23/September/2022 - AM (0.3.167) - Experimental
   gdwnldsKSC
-  * Updated DEVELOPER.TXT with instructonis for building under Visual Studio 2008
+  * Updated DEVELOPER.TXT with instructions for building under Visual Studio 2008
   * Updated libXML2 from 2.4.24 to 2.5.1 and included updated build instructions to configure and build libXML2 in VS2008
   - Added notes in DEVELOPER.TXT on current locations to acquire necessary libraries and requirements to build.
   * Updated version number. 
