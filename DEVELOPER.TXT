@@ -8,7 +8,7 @@ HydraIRC was originally written with Visual Studio .NET 2003, now using Visual S
 The code has been ported to Visual Studio .NET 2010 and support for Visual Studio .NET 2003,
 Visual Studio 2005, and Visual Studio 2008 has been dropped.
 
-Visual Studio.NET 2010 is REQUIRED to build HydraIRC. Target OS version XPSP2 Minimum. 
+Visual Studio 2010 is REQUIRED to build HydraIRC. Target OS version XPSP2 Minimum. 
 
 If you want to start helping out, check out the TODO.TXT and try and fix some bugs,
 then start with some of the simpler things until you're used to the codebase.
