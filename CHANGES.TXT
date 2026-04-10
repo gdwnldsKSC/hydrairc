@@ -14,6 +14,11 @@ Key:
   . personal note
   (name) - the name of the person running HydraIRC who first reported
   the problem or requested the feature
+
+4/10/2026 - AM (0.3.169) - Experimental
+  gdwnldsKSC
+  * Updated DEVELPER.TXT with instructions for building under Visual Studio 2013
+  * XP SP2 minimum target - Pending IPv6 support will need this, as do WTL9.1 and other aspects.
   
 23/September/2022 - AM (0.3.167) - Experimental
   gdwnldsKSC
@@ -1241,7 +1246,7 @@ Key:
 07/October/2003 - PM (0.3.091) - Experimental - for #HydraIRC users only.
   Hydra
   * Tweaked the ATLRegExp stuff so that a workaround breaks less regexp's
-    ("®" and "Ї" caused an unmodified ATLRegExp class to crash) 
+    (" " and " " caused an unmodified ATLRegExp class to crash) 
     NOTE: this change might cause instability depending on the content
     of some user's channel output.
 
@@ -1959,14 +1964,14 @@ Key:
     offending line:
     if (pBits[u >> 3] & 1 << (u & 0x7))
     
-    u >> 3 was a really big number when *sz == "«"
+    u >> 3 was a really big number when *sz == " "
 
     i commented out the section around that line and made the if() always evaluate to FALSE
     
     like this:
     
-    // FIXME: hydra - if *sz == "«" this crashes!!
-    // "input string "> «"
+    // FIXME: hydra - if *sz == " " this crashes!!
+    // "input string ">  "
     // regexp: "^{(.)*?!\a?}{hydra}{!\a(.)*?}$"
 
 		// if (pBits[u >> 3] & 1 << (u & 0x7))
@@ -4397,7 +4402,7 @@ Key:
 
     In addition to this, I just had a quick look at wordpad, which is a
     rich-edit 3 program.  And even that can't display this:
-    "Пр?проверке почт??когд?на фт?зайт?пытаешься" correctly.
+    "  ?             ??    ?     ?    ?         " correctly.
     It doesn't let you select or change the charset/script!
 
     There are also a few other RichEdit based text editors "out there"
@@ -5416,7 +5421,7 @@ Key:
     changes their nick.
   - A few code optimisations.
   - Fixed a debug assert for this character --------------v (and all high-ascii chars)
-    ":BosjeR!~Freggel@D5E0BCC9.kabel.telenet.be QUIT :\o/ ¬o STICK 'EM UP"
+    ":BosjeR!~Freggel@D5E0BCC9.kabel.telenet.be QUIT :\o/  o STICK 'EM UP"
   - Added support for servers with a '-' character (Thanks Zann)
   - Moved a few global variables into the prefs class, so that we can work on
     a copy of the items when editing the prefs, and then simply switch the pointers
