@@ -116,7 +116,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>include\HydraControls;include\asyncmessagepump;include\treelist;include\propertylist;include\taskbaricon;include\tabctrls;include\dlgcontainer;include\dockingwindows;libs\libxml2\include;include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include\HydraControls;include\asyncmessagepump;include\treelist;include\propertylist;include\taskbaricon;include\tabctrls;include\dlgcontainer;include\dockingwindows;libs\libxml2\include;include;C:\WTL91\include\;C:\ATLServer\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_DEBUG;LIBXML_STATIC;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -130,7 +130,7 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(IntDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IntDir);C:\WTL91\Include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/VERBOSE:LIB %(AdditionalOptions)</AdditionalOptions>
