@@ -66,6 +66,7 @@ public:
 
   int Connect( char *Host, unsigned short Port);
   int Connect( DWORD Address, unsigned short Port);
+  int Connect( const sockaddr *Address, int AddressLength );
   int Listen(unsigned short Port);
   int Accept(Socket *pOther, long Events);
   int Send( const char *format, ...);
@@ -77,6 +78,6 @@ public:
   struct sockaddr_in *GetAddress( void ) { return &m_sin; };
 
 private:
-  int ActualConnect( void );
+  int ActualConnect( const sockaddr *Address, int AddressLength );
 
 };

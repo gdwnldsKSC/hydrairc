@@ -44,82 +44,32 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
   ATLASSERT(pDNSRI);
 
   // resolve the address! :)
+  BOOL resolved = FALSE;
+  struct addrinfo hints, *res = NULL;
 
-  struct hostent *hp;
-  // Allocate full size of HP to prevent access violations and other nastyness
-  hp = (struct hostent *)calloc(1,sizeof(struct hostent));
+  memset(&hints, 0, sizeof(hints));
 
-  struct addrinfo hints, *res;
-  // Init hints with zeros before usage
-  memset(&hints, 0, sizeof(struct addrinfo));
-  // vector that will contain all returned resolution addresses
-  std::vector<in_addr*> in_addrs;
-  std::vector<in_addr6*> in_addrs6;
-  
   hints.ai_family = AF_UNSPEC;
   hints.ai_flags = AI_CANONNAME | AI_ADDRCONFIG; // AI_ADDRCONFIG means we return IPv4 addresses only on IPv4 only systems
   hints.ai_socktype = SOCK_STREAM;
 
-  getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res);
-
-  // socket_address defined in utility.h, allows usage/calling/writing for IP version indepenedant code
-  socket_address resolvedAddress;
-  memset(&resolvedAddress, 0, sizeof(resolvedAddress));
-
-  // implement our old IPv4 only support 
-  for(addrinfo *p = res; p != NULL; p = p->ai_next)
+  if (getaddrinfo(pDNSRI->m_fqdn, NULL, &hints, &res) == 0)
   {
-	  char ipstring[MAX_HOSTNAME];
-	  if(p->ai_family == AF_INET) { // IPv4
-		  hp->h_name = p->ai_canonname;
-		  hp->h_aliases = NULL;
-		  hp->h_addrtype = p->ai_family;
-		  hp->h_length = p->ai_addrlen;
+    for (addrinfo *p = res; p != NULL; p = p->ai_next)
+    {
+      if ((p->ai_family != AF_INET && p->ai_family != AF_INET6) || p->ai_addr == NULL)
+        continue;
 
-		  in_addrs.push_back(&reinterpret_cast<sockaddr_in*>(p->ai_addr)->sin_addr);
-		  in_addrs.push_back(NULL);
-		  inet_ntop(AF_INET, (void*) &((struct sockaddr_in*)p->ai_addr)->sin_addr, ipstring, sizeof(ipstring));
-//		  sys_Printf(BIC_ERROR, "IPv4: %s\n", ipstring);
+      if (p->ai_addrlen > sizeof(pDNSRI->m_address))
+        continue;
 
+      memcpy(&pDNSRI->m_address, p->ai_addr, p->ai_addrlen);
+      pDNSRI->m_addressLength = (int)p->ai_addrlen;
+      resolved = TRUE;
+      break;
+    }
 
-		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs[0]);
-
-		  // copy the result into our socket_address union and display via inet_ntop the sockaddr_in member
-		  memcpy(&resolvedAddress.sin_addr.sin_addr, hp->h_addr_list[0], hp->h_length);
-		  resolvedAddress.sin_addr.sin_family = AF_INET;
-  		  inet_ntop(AF_INET, &resolvedAddress.sin_addr.sin_addr, ipstring, sizeof(ipstring));
-//		  sys_Printf(BIC_ERROR, "IPv4 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin_addr.sin_family);
-
-		  break;
-	  } else { // IPv6
-		  hp->h_name = p->ai_canonname;
-		  hp->h_aliases = NULL;
-		  hp->h_addrtype = p->ai_family;
-		  hp->h_length = p->ai_addrlen;
-
-		  in_addrs6.push_back(&reinterpret_cast<sockaddr_in6*>(p->ai_addr)->sin6_addr);
-		  in_addrs6.push_back(NULL);
-
-		  inet_ntop(AF_INET6, (void*) &((struct sockaddr_in6*) res->ai_addr)->sin6_addr, ipstring, sizeof(ipstring));
-//		  sys_Printf(BIC_ERROR, "IPv6: %s\n", ipstring);
-		  
-		  hp->h_addr_list = reinterpret_cast<char**>(&in_addrs6[0]);
-
-		  // copy the result into our socket_address union and display via inet_ntop the sockaddr_in6 member
-		  memcpy(&resolvedAddress.sin6_addr.sin6_addr, hp->h_addr_list[0], hp->h_length);
-		  resolvedAddress.sin_addr.sin_family = AF_INET6;
-		  inet_ntop(AF_INET6, &resolvedAddress.sin6_addr.sin6_addr, ipstring, sizeof(ipstring));
-//		  sys_Printf(BIC_ERROR, "IPv6 storage: %s AF_FAMILY: %u\n", ipstring, resolvedAddress.sin6_addr.sin6_family);
-		  // break; // - commented out, once IPv6 works fully will re-add
-	  }
-  }
-
-
-  // Signal the calling window
-  if (hp != NULL)
-  {
-    // Success!
-	  memcpy(&pDNSRI->m_address, &resolvedAddress.storage, sizeof(resolvedAddress.storage));
+    freeaddrinfo(res);
   }
 
   // ok, some time might have passed, and the user may have closed the window
@@ -127,7 +77,7 @@ LRESULT CDNSResolver::OnDNSEvent(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam
 
   if (IsWindow(pDNSRI->m_hWnd))
   {
-    ::PostMessage(pDNSRI->m_hWnd,WM_DNSEVENT,(hp != NULL),(LPARAM) pDNSRI);
+    ::PostMessage(pDNSRI->m_hWnd,WM_DNSEVENT,resolved,(LPARAM) pDNSRI);
   }
   else
   {

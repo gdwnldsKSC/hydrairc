@@ -550,10 +550,23 @@ void IRCServer::Connect( void )
   }
   else
   {
-	  sockaddr_storage Address;
-	  memset(&Address, 0, sizeof(Address));
-	  inet_pton(AF_INET, m_pDetails->m_Name, &((sockaddr_in *)&Address)->sin_addr); // were we given an IP address ?
-	  if (!(&((sockaddr_in *)&Address)->sin_addr == 0))
+    sockaddr_storage Address;
+    int AddressLength = 0;
+
+    memset(&Address, 0, sizeof(Address));
+
+    if (inet_pton(AF_INET, m_pDetails->m_Name, &((sockaddr_in *)&Address)->sin_addr) == 1)
+    {
+      ((sockaddr_in *)&Address)->sin_family = AF_INET;
+      AddressLength = sizeof(sockaddr_in);
+    }
+    else if (inet_pton(AF_INET6, m_pDetails->m_Name, &((sockaddr_in6 *)&Address)->sin6_addr) == 1)
+    {
+      ((sockaddr_in6 *)&Address)->sin6_family = AF_INET6;
+      AddressLength = sizeof(sockaddr_in6);
+    }
+
+    if (AddressLength == 0)
     {
       // do the name resolution and wait for WM_DNSEVENT
 
@@ -567,19 +580,38 @@ void IRCServer::Connect( void )
     else
     {
       // ip address, skip DNS resolution
-      ActualConnect(Address);
+      ActualConnect(Address, AddressLength);
     }
   }
 }
 
-void IRCServer::ActualConnect( sockaddr_storage Address )
+void IRCServer::ActualConnect( sockaddr_storage Address, int AddressLength )
 {
   // User may have already cancelled the connect.
   // or we might get called due to a late DNS resolution attempt.
   if (m_Status != SVR_STATE_CONNECTING)
     return;
 
-  if (!((sockaddr_in *)&Address)->sin_addr.S_un.S_addr)
+  switch (Address.ss_family)
+  {
+    case AF_INET:
+      if (AddressLength < (int)sizeof(sockaddr_in))
+        Address.ss_family = AF_UNSPEC;
+      else
+        ((sockaddr_in *)&Address)->sin_port = htons((unsigned short)m_pDetails->m_Port);
+      break;
+    case AF_INET6:
+      if (AddressLength < (int)sizeof(sockaddr_in6))
+        Address.ss_family = AF_UNSPEC;
+      else
+        ((sockaddr_in6 *)&Address)->sin6_port = htons((unsigned short)m_pDetails->m_Port);
+      break;
+    default:
+      Address.ss_family = AF_UNSPEC;
+      break;
+  }
+
+  if (AddressLength <= 0 || Address.ss_family == AF_UNSPEC)
   {
     InitVariables();
     m_Variables[VID_ALL] = g_DefaultStrings[DEFSTR_Server_ResolveError];
@@ -594,14 +626,15 @@ void IRCServer::ActualConnect( sockaddr_storage Address )
   InitVariables();
 
   char AddressStr[INET6_ADDRSTRLEN];
+  AddressStr[0] = 0;
 
-  if(inet_ntop(AF_INET, &((sockaddr_in *)&Address)->sin_addr, AddressStr, sizeof(AddressStr)) != NULL)
-  { 
-//	  Printf(BIC_ERROR, "IPv4");
-  } else 
-	  if (inet_ntop(AF_INET6, &((sockaddr_in6 *)&Address)->sin6_addr, AddressStr, sizeof(AddressStr)) != NULL)
+  if (Address.ss_family == AF_INET)
   {
-//	  Printf(BIC_ERROR, "IPv6");
+    inet_ntop(AF_INET, &((sockaddr_in *)&Address)->sin_addr, AddressStr, sizeof(AddressStr));
+  }
+  else if (Address.ss_family == AF_INET6)
+  {
+    inet_ntop(AF_INET6, &((sockaddr_in6 *)&Address)->sin6_addr, AddressStr, sizeof(AddressStr));
   }
   
   char *VarStr = HydraIRC_BuildString(512,g_DefaultStrings[DEFSTR_Server_ConnectAddress],UseEmptyString(AddressStr),m_pDetails->m_Port);
@@ -610,8 +643,7 @@ void IRCServer::ActualConnect( sockaddr_storage Address )
   if (VarStr) free(VarStr);
   //Printf(BIC_CONNECTING,"*** Connecting to %d.%d.%d.%d:%d",AddressDigits[0],AddressDigits[1],AddressDigits[2],AddressDigits[3],(unsigned short)m_pDetails->m_Port);
 
-  //switch(m_pSocket->Connect(m_pDetails->m_Name,(unsigned short)m_pDetails->m_Port))
-  switch(m_pSocket->Connect(((sockaddr_in *)&Address)->sin_addr.S_un.S_addr,(unsigned short)m_pDetails->m_Port))
+  switch(m_pSocket->Connect((const sockaddr *)&Address, AddressLength))
   {
     case SOCK_ERR_NONE:
       break;

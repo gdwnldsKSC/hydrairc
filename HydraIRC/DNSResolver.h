@@ -29,12 +29,14 @@ public:
   char *m_fqdn;
   HWND m_hWnd; // where to send the information back to.
   sockaddr_storage m_address;
+  int m_addressLength;
 
   DNSResolveItem(char *fqdn, HWND hWnd)
   {
     m_fqdn = strdup(fqdn);
     m_hWnd = hWnd;
     memset(&m_address, 0, sizeof(m_address));
+    m_addressLength = 0;
   }
 
   ~DNSResolveItem()

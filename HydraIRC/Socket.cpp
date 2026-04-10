@@ -53,9 +53,14 @@ char *Socket::GetWSASelectErrorString( int Error )
   return "Unknown Error";
 }
 
-int Socket::ActualConnect( void ) // TODO: add "events" param
+int Socket::ActualConnect( const sockaddr *Address, int AddressLength ) // TODO: add "events" param
 {
-  m_sock = socket(AF_INET, SOCK_STREAM, 0);
+  if (Address == NULL || AddressLength <= 0)
+  {
+    return SOCK_ERR_RESOLVE;
+  }
+
+  m_sock = socket(Address->sa_family, SOCK_STREAM, 0);
   if (m_sock == INVALID_SOCKET) 
   {
     return SOCK_ERR_INVALID_SOCKET;
@@ -63,7 +68,7 @@ int Socket::ActualConnect( void ) // TODO: add "events" param
 
   WSAAsyncSelect(m_sock, m_hWnd, m_MessageID, FD_CLOSE | FD_READ | FD_CONNECT | FD_ACCEPT);
 
-  connect(m_sock, (struct sockaddr *)&m_sin, sizeof(m_sin));
+  connect(m_sock, Address, AddressLength);
   int result = WSAGetLastError(); // clear the WSAWOULDBLOCK error
 
   return SOCK_ERR_NONE;
@@ -109,7 +114,7 @@ int Socket::Connect( char *Host, unsigned short Port) // TODO: add "events" para
     }
 		memcpy(&m_sin.sin_addr, m_hp->h_addr_list[0], sizeof(DWORD));    
 	}
-  return ActualConnect();
+  return ActualConnect((const sockaddr *)&m_sin, sizeof(m_sin));
 }
 
 int Socket::Connect( DWORD Address, unsigned short Port) // TODO: add "events" param
@@ -119,7 +124,12 @@ int Socket::Connect( DWORD Address, unsigned short Port) // TODO: add "events" p
   m_sin.sin_port = htons(Port);
   //memcpy(&m_sin.sin_addr, Address, sizeof(DWORD));    
   m_sin.sin_addr.s_addr = Address;
-  return ActualConnect();
+  return ActualConnect((const sockaddr *)&m_sin, sizeof(m_sin));
+}
+
+int Socket::Connect( const sockaddr *Address, int AddressLength )
+{
+  return ActualConnect(Address, AddressLength);
 }
 
 int Socket::Listen(unsigned short Port)

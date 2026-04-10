@@ -3265,7 +3265,7 @@ LRESULT CChildFrame::OnDNSEvent(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOO
       // sucession, check to see if this is the one we're interested in.
       if (stricmp(m_pServer->m_pDetails->m_Name,pDNSRI->m_fqdn) == 0)
       {
-        m_pServer->ActualConnect(pDNSRI->m_address); // Do the connect!
+        m_pServer->ActualConnect(pDNSRI->m_address, pDNSRI->m_addressLength); // Do the connect!
       }
       break;
   }
